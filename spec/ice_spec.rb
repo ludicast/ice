@@ -56,6 +56,15 @@ describe "Ice" do
         array = [1, "foo"]
         array.to_ice.should == [1, "foo"]
       end
+      it "should pass in array with details" do
+        pending "waiting for V8 engine to support passing in arrays"
+        myarray = ["one", "two", "three"]
+        vars = {"myarray" => myarray }
+        Ice.convert_template(%{<% for (var i = 0; i < myarray.length; i++) { %><p><%= myarray[i] %></p><% } %>},
+          vars).should == "<p>one</p><p>two</p><p>three</p>"
+
+      end
+
     end
     context "for hash" do
       it "should freeze elements of array" do
@@ -78,7 +87,6 @@ describe "Ice" do
       vars = {'message' => message }
       Ice.convert_template("<%= message %>", vars).should == "hello world"
     end
-
   end
 
 
