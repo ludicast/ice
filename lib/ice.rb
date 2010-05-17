@@ -10,7 +10,6 @@ end
 [FalseClass, TrueClass, Numeric, String].each do |class_name|
   eval "class #{class_name}
     def to_ice
-      puts 'class #{class_name} to_ice'
       self
     end
   end"
