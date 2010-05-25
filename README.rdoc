@@ -2,6 +2,8 @@
 
 This project allows user-submitted templates to be written in the javascript programming language.  It is similar to liquid, but uses javascript to leverage the powers of a language most developers are familiar with.
 
+It uses the fantastic gem therubyracer to compile the javascript using google's v8 javascript engine.  Soon, it will have support for using files with a .ice extension.
+
 == Note on Patches/Pull Requests
  
 * Fork the project.

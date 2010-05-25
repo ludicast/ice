@@ -35,7 +35,8 @@ module Ice
   def self.convert_template(template_text, vars = {})
     V8::Context.open do |cxt|
       cxt.load "#{File.dirname(__FILE__)}/parser.js"
-      
+      cxt.load "#{File.dirname(__FILE__)}/path_helper.js"
+
       vars.each_pair do |key, value|
         cxt[key] = value.to_ice
       end
@@ -46,3 +47,4 @@ module Ice
     end 
   end
 end
+
