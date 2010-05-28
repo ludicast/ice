@@ -57,7 +57,6 @@ describe "Ice" do
         array.to_ice.should == [1, "foo"]
       end
       it "should pass in array with details" do
-        pending "waiting for V8 engine to support passing in arrays"
         myarray = ["one", "two", "three"]
         vars = {"myarray" => myarray }
         Ice.convert_template(%{<% for (var i = 0; i < myarray.length; i++) { %><p><%= myarray[i] %></p><% } %>},
