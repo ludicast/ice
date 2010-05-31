@@ -14,7 +14,6 @@ describe 'path_helper'
     end
   end
 
-
   describe "for links"
     describe "without parameters"
       it "should generate view link from item"
@@ -24,6 +23,7 @@ describe 'path_helper'
         edit_link(user).should.eql "<a href=\"/users/1/edit\">Edit</a>"
       end
     end
+
 
     describe "with parameters"
       it "should generate view link from item"

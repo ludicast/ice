@@ -60,9 +60,13 @@ In order for everything to work easily, you can have your cubes inherit from our
 
     class BookCube < Ice::BaseCube
       revealing :title, :author_id, :genre_id
+
+      def reviewer_names
+        @source.reviewers.map(&:name)
+      end
     end
 
-would provide a cube with access to the title, author_id and genre properties of the underlying ActiveRecord.
+would provide a cube with access to the title, author_id and genre properties of the underlying ActiveRecord.  In addition, it exposes a reviewer_names function that uses the @source instance variable to get at the record which is being filtered.
 
 These cubes also have simple belongs_to and has_many associations, so you can write things like:
 
