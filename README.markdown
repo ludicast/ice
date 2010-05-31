@@ -13,7 +13,7 @@ Ice runs the templates through an erb-ish parser and then uses the [therubyracer
         <% } %>
     </table>
 
-These templates can be run from the appropriate views directory, where they have a .ice extension.  Also, the templates may be compiled on demand with the method:
+These templates can be run from the appropriate views directory, provided they have a .ice extension.  Also, the templates may be compiled on demand with the method:
 
     Ice.convert_template(template_text, vars = {})
 
@@ -22,11 +22,11 @@ These templates can be run from the appropriate views directory, where they have
 Liquid is excellent but has several disadvantages
 
 * Hard to extend without knowing Liquid internals
-* Introduces yet-another-language, whereas many designers are already familiar with javascript
+* Introduces yet-another-language, whereas many designers/developers are already familiar with javascript
 * Doesn't allow template editors to use a rich object model and create their own functions
-* Doesn't have a rich set of support libraries like javascript brings to the table.
+* Doesn't have a rich set of support libraries like what javascript brings to the table
 
-Note that we're still big fans of Liquid.  In fact, we call this project "ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
+Note that we're still big fans of Liquid.  In fact, we call this project "Ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
 
 ## Installation
 
@@ -40,11 +40,13 @@ Otherwise
 
 ## to_ice
 
-Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the page only have access to a sanitized version of your data.
+Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the page only have access to a sanitized version of the data that you want them to format.
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-## ActiveRecord modifications
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to
+
+## ActiveRecord and to_ice
 
 To make life easy, since most complex objects passed to the templates will be subclasses of ActiveRecord::Base, the default to_ice behaviour of ActiveRecord is to pass itself in to a class with the same name, but followed by the word "Cube".
 
@@ -86,7 +88,7 @@ Note that all revealed functions and associations are also sanitized via to_ice.
 * Add in form builders (from clots project)
 * Break form builders and helpers out into separate javascript project that can be included in other frameworks like CakePHP
 * Allow mappings for other ORMs than ActiveRecord
-* Haml support
+* Haml support (really just deciding what extension those files would use :))
 
 ## Copyright
 
