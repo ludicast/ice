@@ -1,8 +1,8 @@
-# ice
+# Ice Ice Baby!
 
-This project allows user-submitted templates to be written in the javascript programming language.  It is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.
+The Ice project allows user-created templates to be written in the javascript programming language.  They are then interpreted in a sandboxed environment.  Ice is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.
 
-It runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write ice templates like:
+Ice runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write ice templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
@@ -13,7 +13,11 @@ It runs the templates through an erb-ish parser and then uses the [therubyracer]
         <% } %>
     </table>
 
-## Why another templating engine when there is Liquid
+These templates can be run from the appropriate views directory, where they have a .ice extension.  Also, the templates may be compiled on demand with the method:
+
+    Ice.convert_template(template_text, vars = {})
+
+## Why yet another templating engine when there is Liquid
 
 Liquid is excellent but has several disadvantages
 
@@ -22,10 +26,17 @@ Liquid is excellent but has several disadvantages
 * Doesn't allow template editors to use a rich object model and create their own functions
 * Doesn't have a rich set of support libraries like javascript brings to the table.
 
-Note that we're still big fans of Liquid.  In fact, we call this project "ice" as a tribute (keeping the metaphor alive, we use "Cubes" where they have "Drops").
+Note that we're still big fans of Liquid.  In fact, we call this project "ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
 
-Laminate uses the Lua language, which is a slight improvement, but still is unfamiliar to most developers.
+## Installation
 
+For Rails:
+
+    config.gem 'ice'
+
+Otherwise
+
+    gem install ice
 
 ## to_ice
 
@@ -72,8 +83,7 @@ Note that all revealed functions and associations are also sanitized via to_ice.
 
 ## Todo
 
-* Allow .ice view files
-* Add in form builders from clots project
+* Add in form builders (from clots project)
 * Break form builders and helpers out into separate javascript project that can be included in other frameworks like CakePHP
 * Allow mappings for other ORMs than ActiveRecord
 * Haml support
