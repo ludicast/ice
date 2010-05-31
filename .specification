@@ -1,0 +1,135 @@
+--- !ruby/object:Gem::Specification 
+name: ice
+version: !ruby/object:Gem::Version 
+  prerelease: false
+  segments: 
+  - 0
+  - 1
+  - 3
+  version: 0.1.3
+platform: ruby
+authors: 
+- Nate Kidwell
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-05-31 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: rspec
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 1
+        - 2
+        - 9
+        version: 1.2.9
+  type: :development
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: therubyracer
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - "="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 0
+        - 7
+        - 0
+        version: 0.7.0
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        segments: 
+        - 2
+        - 2
+        - 0
+        version: 2.2.0
+  type: :runtime
+  version_requirements: *id003
+description: User templates written in javascript
+email: nate@ludicast.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+- README.markdown
+files: 
+- .gitignore
+- LICENSE
+- README.markdown
+- Rakefile
+- VERSION
+- ice.gemspec
+- ice_js/History.md
+- ice_js/Readme.md
+- ice_js/lib/path_helper.js
+- ice_js/spec/commands/example_command.rb
+- ice_js/spec/dom.html
+- ice_js/spec/node.js
+- ice_js/spec/rhino.js
+- ice_js/spec/server.html
+- ice_js/spec/server.rb
+- ice_js/spec/unit/spec.helper.js
+- ice_js/spec/unit/spec.js
+- init.rb
+- lib/ice.rb
+- lib/ice/base_cube.rb
+- lib/ice/cube_association.rb
+- lib/ice/cubeable.rb
+- lib/parser.js
+- spec/base_cube_spec.rb
+- spec/cube_spec.rb
+- spec/ice_spec.rb
+- spec/spec.opts
+- spec/spec_helper.rb
+has_rdoc: true
+homepage: http://github.com/ludicast/ice
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.6
+signing_key: 
+specification_version: 3
+summary: User templates written in javascript
+test_files: 
+- spec/base_cube_spec.rb
+- spec/cube_spec.rb
+- spec/ice_spec.rb
+- spec/spec_helper.rb
+

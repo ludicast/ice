@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
 
-class FooClassCube < BaseCube
+
+class FooClassCube < Ice::BaseCube
   revealing :first, :second
 end
 

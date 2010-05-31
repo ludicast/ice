@@ -1,22 +1,23 @@
-class BaseCube
+module Ice
+  class BaseCube
 
-  def self.revealing(* attributes)
-    attributes.each do |attr|
+    def self.revealing(* attributes)
+      attributes.each do |attr|
 
-      define_method attr.to_sym do
-        @source.send(attr).to_ice
+        define_method attr.to_sym do
+          @source.send(attr).to_ice
+        end
       end
     end
+
+    attr_reader :source
+
+    def to_ice
+      self
+    end
+
+    def initialize(source)
+      @source = source
+    end
   end
-
-  attr_reader :source
-
-  def to_ice
-    self
-  end
-
-  def initialize(source)
-    @source = source
-  end
-
 end
