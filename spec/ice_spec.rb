@@ -2,6 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Ice" do
 
+
+  
   it "converts a javascript template to html" do
     Ice.convert_template("<%= 'hello world' %>").should == "hello world"
   end
@@ -22,39 +24,39 @@ describe "Ice" do
       vars).should == "1 1.1 true String"
   end
 
-  context "to_ice function" do
+  context "to_cube function" do
     it "should allow identical values for true" do
-      true.to_ice.should == true
+      true.to_cube.should == true
     end
 
     it "should allow identical values for false" do
-      false.to_ice.should == false
+      false.to_cube.should == false
     end
 
     it "should allow identical values for integer" do
-      1.to_ice.should == 1
+      1.to_cube.should == 1
     end
 
     it "should allow identical values for float" do
-      1.1.to_ice.should == 1.1
+      1.1.to_cube.should == 1.1
     end
 
     it "should allow identical values for string" do
-      "hi".to_ice.should == "hi"
+      "hi".to_cube.should == "hi"
     end
 
     it "should default to nil for an object" do
-      Object.new.to_ice.should be_nil
+      Object.new.to_cube.should be_nil
     end
     context "for array" do
       it "should freeze elements of array" do
         i = []
-        i.should_receive(:to_ice)
-        [i].to_ice
+        i.should_receive(:to_cube)
+        [i].to_cube
       end
       it "should return array" do
         array = [1, "foo"]
-        array.to_ice.should == [1, "foo"]
+        array.to_cube.should == [1, "foo"]
       end
       it "should pass in array with details" do
         myarray = ["one", "two", "three"]
@@ -68,18 +70,18 @@ describe "Ice" do
     context "for hash" do
       it "should freeze elements of array" do
         i = []
-        i.should_receive(:to_ice)
-        {:var => i}.to_ice
+        i.should_receive(:to_cube)
+        {:var => i}.to_cube
       end
       it "should return hash" do
         hash = {"foo" => 1}
-        hash.to_ice.should == {"foo" => 1}
+        hash.to_cube.should == {"foo" => 1}
       end
     end
 
-    it "should run to_ice on variables" do
+    it "should run to_cube on variables" do
       message = Object.new
-      def message.to_ice
+      def message.to_cube
         "hello world"
       end
 
