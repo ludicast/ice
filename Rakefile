@@ -5,13 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ice"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = "User templates written in javascript"
+    gem.description = "User templates written in javascript"
     gem.email = "nate@ludicast.com"
     gem.homepage = "http://github.com/ludicast/ice"
     gem.authors = ["Nate Kidwell"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_dependency "therubyracer"
+    gem.add_dependency "therubyracer", "0.7.0"
+    gem.add_dependency "active_support"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
