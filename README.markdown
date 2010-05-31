@@ -2,7 +2,7 @@
 
 The Ice project allows user-created templates to be written in the javascript programming language.  They are then interpreted in a sandboxed environment.  Ice is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.
 
-Ice runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write ice templates like:
+Ice runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write Ice templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
@@ -17,13 +17,13 @@ These templates can be run from the appropriate views directory, provided they h
 
     Ice.convert_template(template_text, vars = {})
 
-## Why yet another templating engine when there is Liquid
+## Why another templating engine when there is Liquid?
 
 Liquid is excellent but has several disadvantages
 
 * Hard to extend without knowing Liquid internals
 * Introduces yet-another-language, whereas many designers/developers are already familiar with javascript
-* Doesn't allow template editors to use a rich object model and create their own functions
+* Doesn't allow template creators to use a rich object model and easily create their own functions
 * Doesn't have a rich set of support libraries like what javascript brings to the table
 
 Note that we're still big fans of Liquid.  In fact, we call this project "Ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
@@ -34,17 +34,17 @@ For Rails:
 
     config.gem 'ice'
 
-Otherwise
+Otherwise:
 
     gem install ice
 
 ## to_ice
 
-Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the page only have access to a sanitized version of the data that you want them to format.
+Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the template only have access to a sanitized version of the data that you want them to format.
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the javascript template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
 
 ## ActiveRecord and to_ice
 
@@ -64,16 +64,16 @@ In order for everything to work easily, you can have your cubes inherit from our
 
 would provide a cube with access to the title, author_id and genre properties of the underlying ActiveRecord.
 
-These cubes also have belongs_to and has_many associations, so you can write things like:
+These cubes also have simple belongs_to and has_many associations, so you can write things like:
 
     class ArticleCube < Ice::BaseCube
       has_many :comments, :tags
       belongs_to :author, :section
     end
 
-This brings in association helper functions such as comment_ids, num_comments, has_comments, comments, author_id, and author.
+This generates association helper functions such as comment_ids, num_comments, has_comments, comments, author_id, and author.
 
-Note that all revealed functions and associations are also sanitized via to_ice.
+Note that the results of all associations and revealed functions are also sanitized via to_ice.
 
 ## Note on Patches/Pull Requests
 
