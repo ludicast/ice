@@ -17,19 +17,19 @@ It runs the templates through an erb-ish parser and then uses the [TheRubyRacer 
 
 Liquid is excellent but has several disadvantages
 
-* Hard to extend without knowing liquid internals
+* Hard to extend without knowing Liquid internals
 * Introduces yet-another-language, whereas many designers are already familiar with javascript
 * Doesn't allow template editors to use a rich object model and create their own functions
 * Doesn't have a rich set of support libraries like javascript brings to the table.
 
-Note that we're still big fans of liquid.  In fact, we call this project "ice" as a tribute (keeping the metaphor alive, we use "Cubes" where they have "Drops").
+Note that we're still big fans of Liquid.  In fact, we call this project "ice" as a tribute (keeping the metaphor alive, we use "Cubes" where they have "Drops").
 
 Laminate uses the Lua language, which is a slight improvement, but still is unfamiliar to most developers.
 
 
 ## to_ice
 
-Every object is revealed to the templates via their to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the page only have access to a sanitized version of your data.
+Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the page only have access to a sanitized version of your data.
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
