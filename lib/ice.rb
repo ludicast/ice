@@ -2,30 +2,30 @@ require 'rubygems'
 require 'v8'
 
 class Object
-  def to_cube
+  def to_ice
     nil
   end
 end
 
 [FalseClass, TrueClass, Numeric, String].each do |class_name|
   eval "class #{class_name}
-    def to_cube
+    def to_ice
       self
     end
   end"
 end
 
 class Array
-  def to_cube
-    map &:to_cube
+  def to_ice
+    map &:to_ice
   end
 end
 
 class Hash
-  def to_cube
+  def to_ice
     res = {}
     each_pair do |key,value|
-      res[key] = value.to_cube
+      res[key] = value.to_ice
     end
     res
   end
@@ -40,7 +40,7 @@ module Ice
       cxt.load "#{File.dirname(__FILE__)}/parser.js"
 
       vars.each_pair do |key, value|
-        cxt[key] = value.to_cube
+        cxt[key] = value.to_ice
       end
 
       cxt['____templateText'] = template_text

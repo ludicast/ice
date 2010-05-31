@@ -1,5 +1,4 @@
 module Ice
-  module ActiveRecord #:nodoc:
     module Cubeable
       def get_cube_class(class_obj)
         begin
@@ -11,10 +10,9 @@ module Ice
         end
       end
 
-      def to_cube
+      def to_ice
         cube_class = get_cube_class self.class
         cube_class.new self
       end
     end
-  end
 end

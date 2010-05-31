@@ -4,7 +4,7 @@ module Ice
       args.each do |sym|
         belongs_to = %{
         def #{sym}
-          @source.#{sym}
+          @source.#{sym}.to_ice
         end
         def #{sym}_id
           @source.#{sym}_id
@@ -18,7 +18,7 @@ module Ice
       args.each do |sym|
         has_many = %{
         def #{sym}
-          @source.#{sym}
+          @source.#{sym}.map(&:to_ice)
         end
         def has_#{sym}
           ! @source.#{sym}.empty?

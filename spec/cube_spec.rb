@@ -1,5 +1,47 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
+class ParentObj
+  def to_ice
+    "parent"
+  end
+end
+
+class TagObj
+  def to_ice
+    @name
+  end
+
+  def initialize(name)
+    @name = name
+  end
+
+end
+
+
+class ChildModel
+  def parent
+    @parent ||= ParentObj.new
+  end
+
+  def parent_id
+    15
+  end
+
+  def tags
+    @tags ||= [TagObj.new("tag1"), TagObj.new("tag2")]
+  end
+
+  def tag_ids
+    [1, 2]
+  end
+
+  def children
+    []
+  end
+
+end
+
+
 class BaseCubeWithBelongsTo
   extend Ice::CubeAssociation
 

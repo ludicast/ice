@@ -1,1 +1,1 @@
-ActiveRecord::Base.send(:include, Ice::ActiveRecord::Cubeable)
+ActiveRecord::Base.send(:include, Ice::Cubeable)

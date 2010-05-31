@@ -24,39 +24,39 @@ describe "Ice" do
       vars).should == "1 1.1 true String"
   end
 
-  context "to_cube function" do
+  context "to_ice function" do
     it "should allow identical values for true" do
-      true.to_cube.should == true
+      true.to_ice.should == true
     end
 
     it "should allow identical values for false" do
-      false.to_cube.should == false
+      false.to_ice.should == false
     end
 
     it "should allow identical values for integer" do
-      1.to_cube.should == 1
+      1.to_ice.should == 1
     end
 
     it "should allow identical values for float" do
-      1.1.to_cube.should == 1.1
+      1.1.to_ice.should == 1.1
     end
 
     it "should allow identical values for string" do
-      "hi".to_cube.should == "hi"
+      "hi".to_ice.should == "hi"
     end
 
     it "should default to nil for an object" do
-      Object.new.to_cube.should be_nil
+      Object.new.to_ice.should be_nil
     end
     context "for array" do
       it "should freeze elements of array" do
         i = []
-        i.should_receive(:to_cube)
-        [i].to_cube
+        i.should_receive(:to_ice)
+        [i].to_ice
       end
       it "should return array" do
         array = [1, "foo"]
-        array.to_cube.should == [1, "foo"]
+        array.to_ice.should == [1, "foo"]
       end
       it "should pass in array with details" do
         myarray = ["one", "two", "three"]
@@ -70,18 +70,18 @@ describe "Ice" do
     context "for hash" do
       it "should freeze elements of array" do
         i = []
-        i.should_receive(:to_cube)
-        {:var => i}.to_cube
+        i.should_receive(:to_ice)
+        {:var => i}.to_ice
       end
       it "should return hash" do
         hash = {"foo" => 1}
-        hash.to_cube.should == {"foo" => 1}
+        hash.to_ice.should == {"foo" => 1}
       end
     end
 
-    it "should run to_cube on variables" do
+    it "should run to_ice on variables" do
       message = Object.new
-      def message.to_cube
+      def message.to_ice
         "hello world"
       end
 
