@@ -67,8 +67,7 @@ Note that all revealed functions and associations are also sanitized via to_ice.
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add spec for it. This is important so I don't break it in a future version unintentionally.  In fact, try to write your specs in a test-first manner.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Commit
 * Send me a pull request.
 
 ## Todo
