@@ -13,7 +13,7 @@ It runs the templates through an erb-ish parser and then uses the [TheRubyRacer 
         <% } %>
     </table>
 
-## Why another templating engine
+## Why another templating engine when there is Liquid
 
 Liquid is excellent but has several disadvantages
 
@@ -22,9 +22,10 @@ Liquid is excellent but has several disadvantages
 * Doesn't allow template editors to use a rich object model and create their own functions
 * Doesn't have a rich set of support libraries like javascript brings to the table.
 
-Laminate uses the Lua language, which is possible, but it stile
+Note that we're still big fans of liquid.  In fact, we call this project "ice" as a tribute (keeping the metaphor alive, we use "Cubes" where they have "Drops").
 
-In fact, we call this project "ice" as a tribute to "liquid" (keeping the metaphor alive, we use "Cubes" where they have "Drops").
+Laminate uses the Lua language, which is a slight improvement, but still is unfamiliar to most developers.
+
 
 ## to_ice
 
@@ -34,9 +35,9 @@ Instances of some classes like String and Numeric just return themselves as the 
 
 ## ActiveRecord modifications
 
-To make life easy, since most complex objects passed to the templates will be subclasses of ActiveRecord::Base, the default behaviour of ActiveRecord is to pass itself in to a class with the name name, followed by the word "Cube".
+To make life easy, since most complex objects passed to the templates will be subclasses of ActiveRecord::Base, the default to_ice behaviour of ActiveRecord is to pass itself in to a class with the same name, but followed by the word "Cube".
 
-Therefore an instance of a User class will ice itself by calling
+Therefore calling to_ice on instance of a User class will invoke
 
     UserCube.new self
 
@@ -59,6 +60,8 @@ These cubes also have belongs_to and has_many associations, so you can write thi
 
 This brings in association helper functions such as comment_ids, num_comments, has_comments, comments, author_id, and author.
 
+Note that all revealed functions and associations are also sanitized via to_ice.
+
 ## Note on Patches/Pull Requests
 
 * Fork the project.
@@ -72,7 +75,7 @@ This brings in association helper functions such as comment_ids, num_comments, h
 
 * Allow .ice view files
 * Add in form builders from clots project
-* Break form builders and helpers out into separate javascript project that can be included
+* Break form builders and helpers out into separate javascript project that can be included in other frameworks like CakePHP
 * Allow mappings for other ORMs than ActiveRecord
 * Haml support
 
