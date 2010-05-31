@@ -16,7 +16,7 @@ To make life easy, since most complex objects passed to the templates will be su
 
 Therefore an instance of a User class will ice itself by calling
 
-  UserCube.new self
+    UserCube.new self
 
 ## BaseCube Class
 
