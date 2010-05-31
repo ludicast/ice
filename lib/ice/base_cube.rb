@@ -1,5 +1,6 @@
 module Ice
   class BaseCube
+    extend Ice::CubeAssociation 
 
     def self.revealing(* attributes)
       attributes.each do |attr|

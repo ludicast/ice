@@ -3,6 +3,7 @@ module Ice
       def get_cube_class(class_obj)
         begin
           cube_string = class_obj.to_s + "Cube"
+          puts "getting string #{cube_string}"
           cube_string.constantize
         rescue
           get_cube_class class_obj.superclass
