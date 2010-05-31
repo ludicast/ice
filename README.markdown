@@ -2,7 +2,7 @@
 
 This project allows user-submitted templates to be written in the javascript programming language.  It is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.
 
-It runs the templates through an erb-ish parser and then uses the [TheRubyRacer Gem](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write ice templates like:
+It runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write ice templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>

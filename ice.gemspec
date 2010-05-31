@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ice}
-  s.version = "0.1.0"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nate Kidwell"]
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "ice.gemspec",
      "ice_js/History.md",
      "ice_js/Readme.md",
      "ice_js/lib/path_helper.js",
@@ -64,16 +65,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_runtime_dependency(%q<therubyracer>, ["= 0.7.0"])
-      s.add_runtime_dependency(%q<active_support>, [">= 0"])
+      s.add_runtime_dependency(%q<active_support>, [">= 2.2.0"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<therubyracer>, ["= 0.7.0"])
-      s.add_dependency(%q<active_support>, [">= 0"])
+      s.add_dependency(%q<active_support>, [">= 2.2.0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<therubyracer>, ["= 0.7.0"])
-    s.add_dependency(%q<active_support>, [">= 0"])
+    s.add_dependency(%q<active_support>, [">= 2.2.0"])
   end
 end
 
