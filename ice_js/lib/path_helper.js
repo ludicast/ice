@@ -7,16 +7,18 @@ function edit_path(item) {
 }
 
 function view_link(item, opts) {
-  label = (opts && opts.label) || "View"
-  return "<a href=\"" + view_path(item) + "\">" + label + "</a>"
+  return link_to(view_path(item), "View", opts)
 }
 
 function edit_link(item, opts) {
-  label = (opts && opts.label) || "Edit"
-  return "<a href=\"" + edit_path(item) + "\">" + label + "</a>"
+  return link_to(edit_path(item), "Edit", opts)
 }
 
 function index_link(table, opts) {
-  label = (opts && opts.label) || "List"
-  return "<a href=\"/" + table + "\">" + label + "</a>"
+  return link_to("/" + table, "List", opts)
+}
+
+function link_to(location, default_label, opts) {
+  label = (opts && opts.label) || default_label
+  return "<a href=\"" + location + "\">" + label + "</a>"
 }
