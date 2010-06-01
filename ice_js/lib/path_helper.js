@@ -15,3 +15,8 @@ function edit_link(item, opts) {
   label = (opts && opts.label) || "Edit"
   return "<a href=\"" + edit_path(item) + "\">" + label + "</a>"
 }
+
+function index_link(table, opts) {
+  label = (opts && opts.label) || "List"
+  return "<a href=\"/" + table + "\">" + label + "</a>"
+}

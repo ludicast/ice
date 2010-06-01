@@ -22,6 +22,9 @@ describe 'path_helper'
       it "should generate edit link from item"
         edit_link(user).should.eql "<a href=\"/users/1/edit\">Edit</a>"
       end
+      it "should generate index link"
+        index_link(user.class_path).should.eql "<a href=\"/users\">List</a>"
+      end
     end
 
 
@@ -31,6 +34,9 @@ describe 'path_helper'
       end
       it "should generate edit link from item"
         edit_link(user, {label:"Change Info"}).should.eql "<a href=\"/users/1/edit\">Change Info</a>"
+      end
+      it "should generate edit link from item"
+        index_link(user.class_path, {label:"All Users"}).should.eql "<a href=\"/users\">All Users</a>"
       end
     end
 
