@@ -44,3 +44,23 @@ describe 'path_helper'
 
 
 end
+
+
+describe "nav bar helper"
+  before_each
+    link_helper = new NavBar()
+  end
+
+
+  it "should generate list by default"
+    link_helper.generate(function(){}).should.eql "<ul class=\"linkBar\"></ul>"
+  end
+
+  it "should generate list with internal links"
+    func = function(bar){
+       bar.link_to("ff")
+       bar.link_to("aa")
+    }
+    link_helper.generate(func).should.eql "<ul class=\"linkBar\"><li>ff</li><li>aa</li></ul>"
+  end
+end

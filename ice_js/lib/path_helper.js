@@ -22,3 +22,20 @@ function link_to(location, default_label, opts) {
   label = (opts && opts.label) || default_label
   return "<a href=\"" + location + "\">" + label + "</a>"
 }
+
+
+var NavBar = function () {
+
+    
+
+}
+
+NavBar.prototype.link_to = function (link) {
+    this.links.push("<li>" + link + "</li>")
+}
+
+NavBar.prototype.generate = function (generator) {
+    this.links = []
+    generator(this)
+    return "<ul class=\"linkBar\">" + this.links.join('') + "</ul>"
+}
