@@ -1,8 +1,10 @@
 # Ice Ice Baby!
 
-The Ice project allows user-created templates to be written in the javascript programming language.  They are then interpreted in a sandboxed environment.  Ice is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.
+The Ice project allows user-created templates to be written in the javascript programming language.  Thanks to the [therubyracer](http://github.com/cowboyd/therubyracer) they are then interpreted using Google's V8 javascript engine.
 
-Ice runs the templates through an erb-ish parser and then uses the [therubyracer](http://github.com/cowboyd/therubyracer) to interpet the javascript using Google's V8 javascript engine.  Your users can then write Ice templates like:
+Ice is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.  Ice runs the templates through an erb-ish parser (written by [Mark Turansky](http://blog.markturansky.com/BetterJavascriptTemplates.html)). 
+
+Your users can then write Ice templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
@@ -19,7 +21,7 @@ These templates can be run from the appropriate views directory, provided they h
 
 ## Why another templating engine when there is Liquid?
 
-Liquid is excellent but has several disadvantages
+[Liquid](http://github.com/tobi/liquid) is excellent but it showing its age in a few ways:
 
 * Hard to extend without knowing Liquid internals
 * Introduces yet-another-language, whereas many designers/developers are already familiar with javascript
@@ -27,6 +29,8 @@ Liquid is excellent but has several disadvantages
 * Doesn't have a rich set of support libraries like what javascript brings to the table
 
 Note that we're still big fans of Liquid.  In fact, we call this project "Ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
+
+In addition, our ice_view.rb file is almost directly ripped out of the liquid project.
 
 ## Installation
 
@@ -78,6 +82,25 @@ These cubes also have simple belongs_to and has_many associations, so you can wr
 This generates association helper functions such as comment_ids, num_comments, has_comments, comments, author_id, and author.
 
 Note that the results of all associations and revealed functions are also sanitized via to_ice.
+
+## Routes
+
+Keeping with our tradition of stealing from other projects, we took the code from [RouteJs middleware](http://coderack.org/users/kossnocorp/middlewares/88-routesjs) to expose to our templates all your routes.  This is a big convenience and lets you put in your templates things like:
+
+    <% var nav = new NavBar() %>
+    <%= nav.open() %>
+    <%= nav.link_to(pizzas_path(), "List Pizzas") %>
+    <%= nav.link_to(edit_pizza_path({id: pizza.id}), "Modify Pizza") %>
+    <%= nav.close() %>
+
+which is converted into
+
+<ul class="linkBar">
+<li><a href="/pizzas">List Pizzas</a></li>
+<li><a href="/pizzas/2/edit">Modify Pizza</a></li>
+</ul>
+
+Note that some people might claim that it is insecure to expose your resources like this, but that probably should be dealt with on a case-by-case basis.
 
 ## Note on Patches/Pull Requests
 
