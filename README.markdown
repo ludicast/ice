@@ -95,10 +95,10 @@ Keeping with our tradition of stealing from other projects, we took the code fro
 
 which is converted into
 
-<ul class="linkBar">
-<li><a href="/pizzas">List Pizzas</a></li>
-<li><a href="/pizzas/2/edit">Modify Pizza</a></li>
-</ul>
+    <ul class="linkBar">
+        <li><a href="/pizzas">List Pizzas</a></li>
+        <li><a href="/pizzas/2/edit">Modify Pizza</a></li>
+    </ul>
 
 Note that some people might claim that it is insecure to expose your resources like this, but that probably should be dealt with on a case-by-case basis.
 
