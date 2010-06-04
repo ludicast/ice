@@ -5,6 +5,7 @@
 #
 #   ActionView::Base::register_template_handler :ice, IceView
 class IceView
+  include RoutesJs
   PROTECTED_ASSIGNS = %w( template_root response _session template_class action_name request_origin session template
                           _response url _request _cookies variables_added _flash params _headers request cookies
                           ignore_missing_templates flash _params logger before_filter_chain_aborted headers )
@@ -41,6 +42,11 @@ class IceView
       assigns['content_for_layout'] = content_for_layout
     end
     assigns.merge!(local_assigns.stringify_keys)
+
+    route_functions = "<% "  + get_routes + " %>"
+    source = route_functions + source
+
+    
     Ice.convert_template(source, assigns)
     #ice = Ice::Template.parse(source)
     #ice.render(assigns, :filters => [@view.controller.master_helper_module], :registers => {:action_view => @view, :controller => @view.controller})
