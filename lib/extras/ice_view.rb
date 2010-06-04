@@ -44,12 +44,9 @@ class IceView
     assigns.merge!(local_assigns.stringify_keys)
 
     route_functions = "<% "  + get_routes + " %>"
-    puts route_functions
-    5.times {puts "****************************"}
 
     path_helper_code = File.read(File.dirname(__FILE__) + "/../../ice_js/lib/path_helper.js")
     path_helper = "<% " + path_helper_code + " %>"
-    puts path_helper
     source = route_functions + path_helper + source
 
     
