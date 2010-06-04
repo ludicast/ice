@@ -14,4 +14,11 @@ describe "nav bar helper"
 
     links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">ff</a></li><li><a href=\"aa\">aa</a></li></ul>"
   end
+
+  it "should take optional titles"
+
+    links = (bar.open() + bar.link_to("ff", "aa") + bar.close())
+
+    links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">aa</a></li></ul>"
+  end
 end

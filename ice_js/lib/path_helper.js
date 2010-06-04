@@ -10,8 +10,8 @@ var NavBar = function () {
 
 }
 
-NavBar.prototype.link_to = function (link) {
-  return "<li>" + link_to(link) + "</li>"
+NavBar.prototype.link_to = function (link, default_label) {
+  return "<li>" + link_to(link, default_label) + "</li>"
 }
 
 NavBar.prototype.open = function () {
