@@ -43,12 +43,9 @@ module Ice
         cxt[key] = value.to_ice
       end
 
-      cxt['____templateText'] = template_text
-
-      @evaled = cxt.eval "Jst.evaluate(Jst.compile(____templateText), {});"
-
+      jst = cxt['Jst']
+      return @evaled = jst.evaluate(jst.compile(template_text), {})
     end
-    @evaled
   end
 end
 
