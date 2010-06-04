@@ -7,12 +7,12 @@ class Object
   end
 end
 
-[FalseClass, TrueClass, Numeric, String].each do |class_name|
-  eval "class #{class_name}
+[FalseClass, TrueClass, Numeric, String].each do |cls|
+  cls.class_eval do
     def to_ice
       self
     end
-  end"
+  end
 end
 
 class Array
