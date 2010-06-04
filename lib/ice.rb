@@ -7,12 +7,12 @@ class Object
   end
 end
 
-[FalseClass, TrueClass, Numeric, String].each do |class_name|
-  eval "class #{class_name}
+[FalseClass, TrueClass, Numeric, String].each do |cls|
+  cls.class_eval do
     def to_ice
       self
     end
-  end"
+  end
 end
 
 class Array
@@ -43,12 +43,9 @@ module Ice
         cxt[key] = value.to_ice
       end
 
-      cxt['____templateText'] = template_text
-
-      @evaled = cxt.eval "Jst.evaluate(Jst.compile(____templateText), {});"
-
+      jst = cxt['Jst']
+      return @evaled = jst.evaluate(jst.compile(template_text), {})
     end
-    @evaled
   end
 end
 
