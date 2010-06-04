@@ -26,7 +26,7 @@ describe 'path_helper'
         index_link(user.class_path).should.eql "<a href=\"/users\">List</a>"
       end
     end
-
+                                    
 
     describe "with parameters"
       it "should generate view link from item"
@@ -48,19 +48,18 @@ end
 
 describe "nav bar helper"
   before_each
-    link_helper = new NavBar()
+    bar = new NavBar()
   end
 
 
   it "should generate list by default"
-    link_helper.generate(function(){}).should.eql "<ul class=\"linkBar\"></ul>"
+    (bar.open() + bar.close()).should.eql "<ul class=\"linkBar\"></ul>"
   end
 
   it "should generate list with internal links"
-    func = function(bar){
-       bar.link_to("ff")
-       bar.link_to("aa")
-    }
-    link_helper.generate(func).should.eql "<ul class=\"linkBar\"><li>ff</li><li>aa</li></ul>"
+
+    links = (bar.open() + bar.link_to("ff") + bar.link_to("aa") + bar.close())
+
+    links.should.eql "<ul class=\"linkBar\"><li>ff</li><li>aa</li></ul>"
   end
 end

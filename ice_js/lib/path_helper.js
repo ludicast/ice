@@ -31,11 +31,13 @@ var NavBar = function () {
 }
 
 NavBar.prototype.link_to = function (link) {
-    this.links.push("<li>" + link + "</li>")
+  return "<li>" + link + "</li>"
 }
 
-NavBar.prototype.generate = function (generator) {
-    this.links = []
-    generator(this)
-    return "<ul class=\"linkBar\">" + this.links.join('') + "</ul>"
+NavBar.prototype.open = function () {
+    return "<ul class=\"linkBar\">"
+}
+
+NavBar.prototype.close = function() {
+    return "</ul>"
 }
