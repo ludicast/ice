@@ -41,3 +41,24 @@ describe "nav bar helper with options"
 
 end
 
+describe "nav bar helper with class options"
+  before_each
+    NavBar.default_options = function () { return {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
+      return "<span>" + link + "</span>"
+    }}
+   }
+
+    
+    bar = new NavBar( )
+  end
+
+  it "should generate list with wrappers"
+    links = (bar.open() + bar.link_to("ff") + bar.close())
+
+    links.should.eql "<div><span><a href=\"ff\">ff</a></span></div>"
+  end
+
+
+
+end
+
