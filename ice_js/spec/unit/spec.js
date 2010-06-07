@@ -1,4 +1,4 @@
-describe "nav bar helper"
+describe "bare nav bar helper"
   before_each
     bar = new NavBar()
   end
@@ -21,4 +21,23 @@ describe "nav bar helper"
 
     links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">aa</a></li></ul>"
   end
+
 end
+
+describe "nav bar helper with options"
+  before_each
+    bar = new NavBar( {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
+      return "<span>" + link + "</span>"
+    }} )
+  end
+
+  it "should generate list with wrappers"
+    links = (bar.open() + bar.link_to("ff") + bar.close())
+
+    links.should.eql "<div><span><a href=\"ff\">ff</a></span></div>"
+  end
+
+
+
+end
+
