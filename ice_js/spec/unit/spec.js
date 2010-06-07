@@ -43,10 +43,10 @@ end
 
 describe "nav bar helper with class options"
   before_each
-    NavBar.default_options = function () { return {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
+    NavBar.default_options = {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
       return "<span>" + link + "</span>"
     }}
-   }
+
 
     
     bar = new NavBar( )

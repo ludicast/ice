@@ -7,7 +7,7 @@ function link_to(location, default_label, opts) {
 }
 
 var NavBar = function (options) {
-    defaults = NavBar.default_options()
+    var defaults = NavBar.default_options
     for (var default_option in defaults) {
         if (defaults.hasOwnProperty(default_option)) {
             this[default_option] = defaults[default_option]
@@ -39,4 +39,4 @@ NavBar.prototype.close = function () {
     return this.nav_close || "</ul>"
 }
 
-NavBar.default_options = function () { return {}}
+NavBar.default_options = {}

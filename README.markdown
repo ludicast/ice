@@ -83,6 +83,43 @@ This generates association helper functions such as comment_ids, num_comments, h
 
 Note that the results of all associations and revealed functions are also sanitized via to_ice.
 
+## NavBar
+
+To make it easier to generate links, we added a NavBar class to the javascript helpers.  THis class has an open and close method, as well as a link_to mehod which either takes a url, or a url and a link label.
+
+    <% var nav = new NavBar() %>
+    <%= nav.open() %>
+    <%= nav.link_to("/foo", "Bar") %>
+    <%= nav.link_to("http://ludicast.com") %>
+    <%= nav.close() %>
+
+This then generates the following html
+
+    <ul class="linkBar">
+        <li><a href="/foo">Bar</a></li>
+        <li><a href="http://ludicast.com">http://ludicast.com</a></li>
+    </ul>
+
+You'll notice that the resulting html code is shorter than the generator code, making this look inefficient.  However the NavBar also takes options so if the NavBar above was instantiated with:
+
+    <% var nav = new NavBar({nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
+      return "<span>" + link + "</span>"
+
+it would automatically generate
+
+    <div>
+        <span><a href="/foo">Bar</a></span>
+        <span><a href="http://ludicast.com">http://ludicast.com</a></span>
+    </div>
+
+Also, if you want to make a site- or page-wide change, all you need to do is add these options to the NavBar class like
+
+    NavBar.default_options = {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
+        return "<span>" + link + "</span>"
+    }}
+
+Then all links will generate with these options, unless overridden in the NavBar's constructor.
+
 ## Routes
 
 Keeping with our tradition of stealing from other projects, we took the code from [RouteJs middleware](http://coderack.org/users/kossnocorp/middlewares/88-routesjs) to expose to our templates all your routes.  This is a big convenience and lets you put in your templates things like:
