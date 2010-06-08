@@ -24,7 +24,7 @@ describe "NavBar"
       links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">aa</a></li></ul>"
     end
 
-end
+  end
 
   describe "with options"
     before_each
@@ -41,6 +41,29 @@ end
 
   end
 
+  describe "with separator"
+    before_each
+
+      separator = " --- "
+      bar = new NavBar({separator: separator})
+    end
+
+    it "should not separate single links"
+      links = (bar.open() + bar.link_to("ff") + bar.close())
+      links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">ff</a></li></ul>"
+    end
+
+    it "should separate multiple links"
+      links = (bar.open() + bar.link_to("ff") + bar.link_to("aa") + bar.close())
+      links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">ff</a></li>" + separator + "<li><a href=\"aa\">aa</a></li></ul>"
+    end
+
+   // it "should not display for missing links"
+
+   // end
+  end
+
+
   describe "with class-wide options"
     before_each
       NavBar.default_options = {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
@@ -48,7 +71,7 @@ end
       }}
 
 
-    
+
       bar = new NavBar( )
     end
 
@@ -56,6 +79,10 @@ end
       links = (bar.open() + bar.link_to("ff") + bar.close())
 
       links.should.eql "<div><span><a href=\"ff\">ff</a></span></div>"
+    end
+
+    after_each
+      NavBar.default_options = {}
     end
 
   end

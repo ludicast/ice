@@ -23,11 +23,17 @@ var NavBar = function (options) {
 
 NavBar.prototype.link_to = function (link, default_label) {
     link_code = link_to(link, default_label)
+
     if (this.link_wrapper) {
-        return this.link_wrapper(link_code)
+        link_data =  this.link_wrapper(link_code)
     } else {
-        return "<li>" + link_to(link, default_label) + "</li>"
+        link_data = "<li>" + link_to(link, default_label) + "</li>"
     }
+    if (this.link_data && this.separator) {
+      link_data = this.separator + link_data  
+    }
+    this.link_data = link_data
+    return link_data;
 }
 
 
