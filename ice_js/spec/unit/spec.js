@@ -21,7 +21,7 @@ describe "NavBar"
 
       links = (bar.open() + bar.link_to("ff", "aa") + bar.close())
 
-      links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">aa</a></li></ul>"
+      links.should.eql "<ul class=\"linkBar\"><li><a href=\"aa\">ff</a></li></ul>"
     end
 
   end

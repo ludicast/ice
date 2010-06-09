@@ -1,9 +1,8 @@
-function link_to(location, default_label, opts) {
-  if (! default_label) {
-    default_label = location
+function link_to(default_label, location, opts) {
+  if (! location) {
+    location = default_label
   }
-  label = (opts && opts.label) || default_label
-  return "<a href=\"" + location + "\">" + label + "</a>"
+  return "<a href=\"" + location + "\">" + default_label + "</a>"
 }
 
 var NavBar = function (options) {
@@ -21,13 +20,13 @@ var NavBar = function (options) {
     }
 }
 
-NavBar.prototype.link_to = function (link, default_label) {
-    link_code = link_to(link, default_label)
+NavBar.prototype.link_to = function (label, link) {
+    link_code = link_to(label, link)
 
     if (this.link_wrapper) {
         link_data =  this.link_wrapper(link_code)
     } else {
-        link_data = "<li>" + link_to(link, default_label) + "</li>"
+        link_data = "<li>" + link_code + "</li>"
     }
     if (this.link_data && this.separator) {
       link_data = this.separator + link_data  
