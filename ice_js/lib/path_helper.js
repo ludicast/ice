@@ -1,8 +1,8 @@
-function link_to(default_label, location, opts) {
-  if (! location) {
-    location = default_label
+function link_to(label, link, opts) {
+  if (! link) {
+    link = label
   }
-  return "<a href=\"" + location + "\">" + default_label + "</a>"
+  return "<a href=\"" + link + "\">" + label + "</a>"
 }
 
 var NavBar = function (options) {
