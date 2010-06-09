@@ -89,7 +89,7 @@ To make it easier to generate links, we added a NavBar class to the javascript h
 
     <% var nav = new NavBar() %>
     <%= nav.open() %>
-    <%= nav.link_to("/foo", "Bar") %>
+    <%= nav.link_to("Bar", "/foo") %>
     <%= nav.link_to("http://ludicast.com") %>
     <%= nav.close() %>
 
@@ -126,8 +126,8 @@ Keeping with our tradition of stealing from other projects, we took the code fro
 
     <% var nav = new NavBar() %>
     <%= nav.open() %>
-    <%= nav.link_to(pizzas_path(), "List Pizzas") %>
-    <%= nav.link_to(edit_pizza_path({id: pizza.id}), "Modify Pizza") %>
+    <%= nav.link_to("List Pizzas", pizzas_path() ) %>
+    <%= nav.link_to("Modify Pizza", edit_pizza_path({id: pizza.id})) %>
     <%= nav.close() %>
 
 which is converted into
