@@ -1,5 +1,3 @@
-require 'active_support'
-
 module Ice
   module CubeAssociation
     def belongs_to(*args)

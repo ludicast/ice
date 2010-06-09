@@ -1,5 +1,3 @@
-require 'rubygems'
-
 require 'ice'
 require 'ice/cubeable'
 require 'ice/cube_association'
