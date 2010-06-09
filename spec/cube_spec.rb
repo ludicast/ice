@@ -58,7 +58,6 @@ class BaseCubeWithHasMany
   def initialize
     @source = ChildModel.new
   end
-
   has_many :tags
   has_many :children
 end
