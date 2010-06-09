@@ -118,7 +118,24 @@ Also, if you want to make a site- or page-wide change, all you need to do is add
         return "<span>" + link + "</span>"
     }}
 
-Then all links will generate with these options, unless overridden in the NavBar's constructor.
+Then all links will generate with these options, unless overridden in the NavBar's constructor.  If the NavBar has a separator property added, it will add that separator between links.  If a link is not shown (due to access restrictions or whatever in the link_wrapper function) the separator obviously will not appear for that link.  So the code
+
+    bar.separator = "---"
+    bar.link_wrapper = function (link) {
+        if (link.match(/aa/)) {
+            return ""
+        } else {
+            return link
+        }
+    }
+
+would cause 
+
+    bar.open() + bar.link_to("ff") + bar.link_to("aa") + bar.link_to("gg") + bar.close()
+
+to render as:
+
+    links.should.eql "<div><a href=\"ff\">ff</a>----<a href=\"gg\">gg</a></div>"
 
 ## Routes
 

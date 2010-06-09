@@ -28,10 +28,12 @@ NavBar.prototype.link_to = function (label, link) {
     } else {
         link_data = "<li>" + link_code + "</li>"
     }
-    if (this.link_data && this.separator) {
-      link_data = this.separator + link_data  
+    if (link_data) {
+      if (this.link_data && this.separator) {
+        link_data = this.separator + link_data
+      }
+      this.link_data = link_data
     }
-    this.link_data = link_data
     return link_data;
 }
 

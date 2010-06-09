@@ -43,7 +43,6 @@ describe "NavBar"
 
   describe "with separator"
     before_each
-
       separator = " --- "
       bar = new NavBar({separator: separator})
     end
@@ -58,9 +57,21 @@ describe "NavBar"
       links.should.eql "<ul class=\"linkBar\"><li><a href=\"ff\">ff</a></li>" + separator + "<li><a href=\"aa\">aa</a></li></ul>"
     end
 
-   // it "should not display for missing links"
+    it "should not display for missing links"
+      bar.nav_open = "<div>"
+      bar.nav_close = "</div>"
+      bar.link_wrapper = function (link) {
+          if (link.match(/aa/)) {
+            return ""
+          } else {
+            return link
+          }
+      }
 
-   // end
+      links = (bar.open() + bar.link_to("ff") + bar.link_to("aa") + bar.link_to("gg") + bar.close())
+      links.should.eql "<div><a href=\"ff\">ff</a>" + separator + "<a href=\"gg\">gg</a></div>"
+
+    end
   end
 
 
@@ -69,9 +80,6 @@ describe "NavBar"
       NavBar.default_options = {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
         return "<span>" + link + "</span>"
       }}
-
-
-
       bar = new NavBar( )
     end
 
