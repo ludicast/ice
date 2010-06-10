@@ -47,26 +47,45 @@ function label_tag(name, opts) {
     return "<label "+ class_string + "for=\"" + name + "\">" + label.charAt(0).toUpperCase() + label.substr(1) + "</label>"
 }
 
+var BaseInputTag = function(tag_type) {
+   this.tag_type = tag_type
+}
+
+BaseInputTag.prototype.render = function () {
+  return "<input "+ this.checked_string + this.disabled_string + this.class_string +"id=\"" + this.name +"\" " + this.maxlength_string + "name=\"" + this.name +"\" " + this.size_string + "type=\"" + this.tag_type + "\" " + this.value + "/>"
+}
+
+BaseInputTag.prototype.set_opts = function () {
+    this.class_string = get_class_string(opts)
+    this.size_string = get_size_string(opts)
+    this.disabled_string = get_disabled_string(opts)
+    this.maxlength_string = get_maxlength_string(opts)
+}
+
+
 function password_field_tag(name) {
-    value = ((typeof arguments[1] == 'string') && "value=\"" + arguments[1] + "\" ") || ""
+    tag = new BaseInputTag("password")
+    tag.name = name
+    tag.value = ((typeof arguments[1] == 'string') && "value=\"" + arguments[1] + "\" ") || ""
     opts = arguments[2] || arguments[1]
-    class_string = get_class_string(opts)
-    size_string = get_size_string(opts)
-    disabled_string = get_disabled_string(opts)
-    maxlength_string = get_maxlength_string(opts)
-    return "<input "+ disabled_string + class_string +"id=\"" + name +"\" " + maxlength_string + "name=\"" + name +"\" " + size_string + "type=\"password\" " + value + "/>"
+
+
+    tag.set_opts(opts)
+    tag.checked_string = ""
+    return tag.render()
+
 }
 
 function check_box_tag(name) {
-    value = "value=\"" + (((typeof arguments[1] == 'string') && arguments[1]) || 1) + "\" "
-    checked_string = (arguments[2] === true) ? "checked=\"checked\" " : ""
+    tag = new BaseInputTag("checkbox")
+    tag.name = name
+    tag.value = "value=\"" + (((typeof arguments[1] == 'string') && arguments[1]) || 1) + "\" "
+    tag.checked_string = (arguments[2] === true) ? "checked=\"checked\" " : ""
     
     opts = arguments[2] || arguments[1]
-    class_string = get_class_string(opts)
 
-    size_string = get_size_string(opts)
-    disabled_string = get_disabled_string(opts)
-    maxlength_string = get_maxlength_string(opts)
-    return "<input "+ checked_string + disabled_string + class_string +"id=\"" + name +"\" " + maxlength_string + "name=\"" + name +"\" " + size_string + "type=\"checkbox\" " + value + "/>"
 
+
+    tag.set_opts(opts)
+    return tag.render()
 }
