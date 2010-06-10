@@ -120,5 +120,46 @@ describe "Form Builder Tags"
 
   end
 
+  describe "for password_field_tag"
+    it "should generate regular password tag"
+      tag = password_field_tag('pass')
+      tag.should.eql '<input id="pass" name="pass" type="password" />'
+    end
+
+    it "should have alternate value"
+      tag = password_field_tag('secret', 'Your secret here')
+      tag.should.eql '<input id="secret" name="secret" type="password" value="Your secret here" />'
+    end
+
+    it "should take class"
+      tag = password_field_tag('masked', {'class':'masked_input_field'})
+      tag.should.eql '<input class="masked_input_field" id="masked" name="masked" type="password" />'
+    end
+
+    it "should take size"
+      tag = password_field_tag('token','', {size:15})
+      tag.should.eql '<input id="token" name="token" size="15" type="password" value="" />'
+    end
+
+    it "should take maxlength"
+      tag = password_field_tag('key',{maxlength:16})
+      tag.should.eql '<input id="key" maxlength="16" name="key" type="password" />'
+    end
+
+
+    it "should take disabled option"
+      tag = password_field_tag('confirm_pass',{disabled:true})
+      tag.should.eql '<input disabled="disabled" id="confirm_pass" name="confirm_pass" type="password" />'
+    end
+
+    it "should take multiple options"
+      tag = password_field_tag('pin','1234',{maxlength:4,size:6, 'class':'pin-input'})
+      tag.should.eql '<input class="pin-input" id="pin" maxlength="4" name="pin" size="6" type="password" value="1234" />'
+    end
+
+  end
+
+
+
 end
 
