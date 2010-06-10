@@ -11,19 +11,13 @@ function get_type_value(type, opts){
     switch (type) {
       case "disabled":
         return opts[type] ? "disabled" : ""
+      case "checked":
+        return opts[type] ? "checked" : ""
     }
     return opts[type]
 }
 
 function get_attribute_string(type, opts) {
-   // var opts
-  //  if (typeof arguments[1] == 'string') {
-    //    value = arguments[1]
-    //    opts = arguments[2]
-   // } else {
-      //  opts = arguments[1]
-       // value = opts[type]
-   // }
     return (opts && opts[type] && type + "=\"" + get_type_value(type,opts) + "\" ") || ""
 }
 
@@ -39,6 +33,10 @@ function get_disabled_string(opts) {
     return get_attribute_string('disabled', opts)
 }
 
+function get_checked_string(opts) {
+    return get_attribute_string('checked', opts)
+}
+
 function get_maxlength_string(opts) {
     return get_attribute_string('maxlength', opts)
 }
@@ -50,7 +48,6 @@ function label_tag(name, opts) {
 }
 
 function password_field_tag(name) {
-
     value = ((typeof arguments[1] == 'string') && "value=\"" + arguments[1] + "\" ") || ""
     opts = arguments[2] || arguments[1]
     class_string = get_class_string(opts)
@@ -58,4 +55,18 @@ function password_field_tag(name) {
     disabled_string = get_disabled_string(opts)
     maxlength_string = get_maxlength_string(opts)
     return "<input "+ disabled_string + class_string +"id=\"" + name +"\" " + maxlength_string + "name=\"" + name +"\" " + size_string + "type=\"password\" " + value + "/>"
+}
+
+function check_box_tag(name) {
+    value = "value=\"" + (((typeof arguments[1] == 'string') && arguments[1]) || 1) + "\" "
+    checked_string = (arguments[2] === true) ? "checked=\"checked\" " : ""
+    
+    opts = arguments[2] || arguments[1]
+    class_string = get_class_string(opts)
+
+    size_string = get_size_string(opts)
+    disabled_string = get_disabled_string(opts)
+    maxlength_string = get_maxlength_string(opts)
+    return "<input "+ checked_string + disabled_string + class_string +"id=\"" + name +"\" " + maxlength_string + "name=\"" + name +"\" " + size_string + "type=\"checkbox\" " + value + "/>"
+
 }

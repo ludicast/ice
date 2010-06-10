@@ -159,7 +159,22 @@ describe "Form Builder Tags"
 
   end
 
+  describe "for check_box_tag"
 
+    it "should generate basic checkbox"
+      tag = check_box_tag('accept')
+      tag.should.eql '<input id="accept" name="accept" type="checkbox" value="1" />'
+    end
+
+    it "should take alternate values"
+      tag = check_box_tag('rock', 'rock music')
+      tag.should.eql '<input id="rock" name="rock" type="checkbox" value="rock music" />'
+    end
+    it "should take parameter for checked"
+      tag = check_box_tag('receive_email', 'yes', true)
+      tag.should.eql '<input checked="checked" id="receive_email" name="receive_email" type="checkbox" value="yes" />'
+    end
+  end
 
 end
 
