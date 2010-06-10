@@ -98,3 +98,27 @@ describe "NavBar"
 
 end
 
+
+describe "Form Builder Tags"
+  describe "label_tag"
+    it "assigns default value"
+      tag = label_tag('name')
+      tag.should.eql '<label for="name">Name</label>'
+    end
+  //  it "assigns humanized default value" do
+   //   tag = "{% label_tag 'supervising_boss_id' %}"
+   //   tag.should parse_to('<label for="supervising_boss_id">Supervising boss</label>')
+  //  end
+  //  it "allows alternative value" do
+  /*    tag = "{% label_tag 'name', 'Your Name' %}"
+      tag.should parse_to('<label for="name">Your Name</label>')
+    end
+    it "allows class to be assigned" do
+      tag = "{% label_tag 'name',class:'small_label' %}"
+      tag.should parse_to('<label class="small_label" for="name">Name</label>')
+    end
+    */
+  end
+
+end
+
