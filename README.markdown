@@ -19,6 +19,10 @@ These templates can be run from the appropriate views directory, provided they h
 
     Ice.convert_template(template_text, vars = {})
 
+## Rails 2
+
+This branch is for Rails 2 development.  The mainline only supports Rails 3.
+
 ## Why another templating engine when there is Liquid?
 
 [Liquid](http://github.com/tobi/liquid) is excellent but it showing its age in a few ways:
