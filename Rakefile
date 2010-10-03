@@ -11,8 +11,8 @@ begin
     gem.homepage = "http://github.com/ludicast/ice"
     gem.authors = ["Nate Kidwell"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_dependency "therubyracer", "0.7.4"
-    gem.add_dependency "activesupport", ">= 2.2.0"
+    gem.add_dependency "therubyracer", "0.8.0pre"
+    gem.add_dependency "rails", "3.0.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
