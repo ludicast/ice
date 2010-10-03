@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'v8'
 
 class Object

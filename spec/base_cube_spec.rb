@@ -1,11 +1,8 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-
-
 class FooClassCube < Ice::BaseCube
   revealing :first, :second
 end
-
 
 class FooClass
   include Ice::Cubeable
