@@ -4,4 +4,4 @@ require 'ice/cube_association'
 require 'ice/base_cube'
 
 require 'rails'
-require 'active_record'
+require 'active_model/serialization'

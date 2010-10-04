@@ -1,4 +1,4 @@
-require 'active_record'
+require 'active_model/serialization'
 require 'action_view'
 
 module Ice
@@ -9,7 +9,7 @@ module Ice
   end
 end
 
-ActiveRecord::Base.send(:include, Ice::Cubeable)
+ActiveModel::Serialization.send(:include, Ice::Cubeable)
 
 require 'extras/ice_view'
 
