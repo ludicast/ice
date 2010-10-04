@@ -140,7 +140,7 @@ Keeping with our tradition of stealing from other projects, we took the code fro
     <% var nav = new NavBar() %>
     <%= nav.open() %>
     <%= nav.link_to("List Pizzas", pizzas_path() ) %>
-    <%= nav.link_to("Modify Pizza", edit_pizza_path({id: pizza.id})) %>
+    <%= nav.link_to("Modify Pizza", edit_pizza_path(pizza)) %>
     <%= nav.close() %>
 
 which is converted into
