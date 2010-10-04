@@ -34,13 +34,9 @@ In addition, our ice_view.rb file is almost directly ripped out of the liquid pr
 
 ## Installation
 
-For Rails:
+Ice is curently being developed only for Rails 3 (we have a Rails 2 branch as well).  Simply add to your Gemfile
 
-    config.gem 'ice'
-
-Otherwise:
-
-    gem install ice
+    gem 'ice'
 
 ## to_ice
 
