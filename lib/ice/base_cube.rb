@@ -50,14 +50,5 @@ module Ice
       end
     end
 
-    def method_missing(m, *args, &block)
-      puts "calling mm"
-      if @attribute_names
-        super(m, *args, &block)
-      else
-        to_hash[m.to_s]
-      end
-    end
-
   end
 end
