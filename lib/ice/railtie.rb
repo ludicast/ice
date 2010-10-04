@@ -1,3 +1,6 @@
+require 'active_record'
+require 'action_view'
+
 module Ice
   class Railtie < Rails::Railtie
     initializer "ice.configure_rails_initialization" do
