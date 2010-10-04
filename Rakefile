@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/ludicast/ice"
     gem.authors = ["Nate Kidwell"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_dependency "therubyracer", "0.8.0.pre"
+    gem.add_dependency "therubyracer", "0.7.5"
     gem.add_dependency "rails", "3.0.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

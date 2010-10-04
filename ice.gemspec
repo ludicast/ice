@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nate Kidwell"]
-  s.date = %q{2010-10-02}
+  s.date = %q{2010-10-03}
   s.description = %q{User templates written in javascript}
   s.email = %q{nate@ludicast.com}
   s.extra_rdoc_files = [
@@ -40,12 +40,12 @@ Gem::Specification.new do |s|
      "init.rb",
      "lib/extras/ice_view.rb",
      "lib/ice.rb",
+     "lib/ice/base.rb",
      "lib/ice/base_cube.rb",
      "lib/ice/cube_association.rb",
      "lib/ice/cubeable.rb",
+     "lib/ice/railtie.rb",
      "lib/parser.js",
-     "lib/routes_js.rb",
-     "rails/init.rb",
      "spec/base_cube_spec.rb",
      "spec/cube_spec.rb",
      "spec/ice_spec.rb",
@@ -70,16 +70,16 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_runtime_dependency(%q<therubyracer>, ["= 0.8.0.pre"])
+      s.add_runtime_dependency(%q<therubyracer>, ["= 0.7.5"])
       s.add_runtime_dependency(%q<rails>, ["= 3.0.0"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_dependency(%q<therubyracer>, ["= 0.8.0.pre"])
+      s.add_dependency(%q<therubyracer>, ["= 0.7.5"])
       s.add_dependency(%q<rails>, ["= 3.0.0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
-    s.add_dependency(%q<therubyracer>, ["= 0.8.0.pre"])
+    s.add_dependency(%q<therubyracer>, ["= 0.7.5"])
     s.add_dependency(%q<rails>, ["= 3.0.0"])
   end
 end
