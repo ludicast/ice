@@ -22,11 +22,15 @@ module Ice
     end
 
     def to_hash
-      hash = {:id => @source.id}
-      @attribute_names && @attribute_names.each do |name|
-        hash[name] = @source.send(name)
+      if @attribute_names
+        hash = {:id => @source.id}
+        @attribute_names && @attribute_names.each do |name|
+          hash[name] = @source.send(name)
+        end
+        hash
+      else
+        @hash = @source.serializable_hash
       end
-      hash
     end
 
     def id
@@ -35,6 +39,25 @@ module Ice
 
     def initialize(source)
       @source = source
+      unless @attribute_names
+        to_hash.each_key do |key|
+          unless self.respond_to? key.to_sym
+            self.class.send :define_method, key.to_sym do
+              @source.send(key.to_sym)
+            end
+          end
+        end
+      end
     end
+
+    def method_missing(m, *args, &block)
+      puts "calling mm"
+      if @attribute_names
+        super(m, *args, &block)
+      else
+        to_hash[m.to_s]
+      end
+    end
+
   end
 end
