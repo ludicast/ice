@@ -66,7 +66,7 @@ In order for everything to work easily, you can have your cubes inherit from our
       end
     end
 
-would provide a cube with access to the title, author_id and genre properties of the underlying ActiveModel.  In addition, it exposes a reviewer_names function that uses the @source instance variable to get at the record which is being filtered.
+would provide a cube with access to the title, author_id and genre properties of the underlying ActiveModel.  In addition, it exposes a reviewer_names function that uses the @source instance variable to get at the record which is being filtered.  Note that if no call to `revealing` occurs, the cube generates a mapping for the `@source` object's serializable `attributes`.
 
 These cubes also have simple belongs_to and has_many associations, so you can write things like:
 
