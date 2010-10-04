@@ -3,8 +3,8 @@ module Ice
     extend Ice::CubeAssociation 
 
     def self.revealing(* attributes)
+      attributes << :id      
       attributes.each do |attr|
-
         define_method attr.to_sym do
           @source.send(attr).to_ice
         end
