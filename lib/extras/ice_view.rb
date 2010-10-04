@@ -13,23 +13,11 @@ module RoutesJs
 
       Rails.application.routes.routes.collect do |route|
 
-        puts route.class.to_s
-        puts route.path
-
-
-
-        puts route.inspect
-
         path = route.path
-        puts "%%%"
-        puts route.conditions.inspect
-        puts route.requirements
-
         named_route = Rails.application.routes.
                         named_routes.routes.key(route).to_s
 
         if named_route != ''
-          puts named_route +  "   kkyy   " + route.path
 
           if path.match /(.*)\(\.\:format\)$/
             path = $1
@@ -67,6 +55,9 @@ EOF
   def route_function name, path
 <<EOF
 function #{name}(variables) {
+if (variables && variables.to_hash) {
+  variables = variables.to_hash;
+}
 var var_pairs = [];
 for(var key in variables) {
 var_pairs.push([key, variables[key]]);
