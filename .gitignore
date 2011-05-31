@@ -21,3 +21,4 @@ pkg
 .idea
 
 ## PROJECT::SPECIFIC
+test/db/*.sqlite3
