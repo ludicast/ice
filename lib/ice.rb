@@ -1,5 +1,3 @@
-10.times { puts "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY" }
-
 require 'ice'
 require 'ice/cubeable'
 require 'ice/cube_association'
