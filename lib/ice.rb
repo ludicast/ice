@@ -19,7 +19,6 @@ class Ice
           template_source = <<-ICE_TEMPLATE
             #{template.source}
           ICE_TEMPLATE
-
           variables = {}
           variable_names = controller.instance_variable_names
           variable_names -= %w[@template]
@@ -29,7 +28,7 @@ class Ice
           variable_names.each do |name|
             variables[name.sub(/^@/, "")] = controller.instance_variable_get(name)
           end
-          Ice.convert_template(template_source, variables)
+          Ice.convert_template(template_source, variables.merge(local_assigns))
         ICE
       end
   end

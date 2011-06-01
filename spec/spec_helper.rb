@@ -14,7 +14,7 @@ require "informal"
 
 require "capybara/rails" 
 Rails.backtrace_cleaner.remove_silencers! 
-Capybara.default_driver = :rack_test 
+Capybara.default_driver = :rack_test
 Capybara.default_selector = :css
 
 # Run any available migration
