@@ -1,4 +1,4 @@
-module Ice
+class Ice
   class BaseCube
     extend Ice::CubeAssociation 
 

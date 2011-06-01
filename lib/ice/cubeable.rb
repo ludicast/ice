@@ -1,4 +1,4 @@
-module Ice
+class Ice
     module Cubeable
       def get_cube_class(class_obj)
         begin

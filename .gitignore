@@ -21,4 +21,4 @@ pkg
 .idea
 
 ## PROJECT::SPECIFIC
-test/db/*.sqlite3
+spec/dummy/db/*.sqlite3
