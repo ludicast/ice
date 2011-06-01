@@ -33,7 +33,6 @@ class Ice
         ICE
       end
   end
-
 end
 
 
