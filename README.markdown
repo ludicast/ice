@@ -79,6 +79,10 @@ This generates association helper functions such as comment_ids, num_comments, h
 
 Note that the results of all associations and revealed functions are also sanitized via to_ice.
 
+## Partals
+
+Partials may now be written in Ice, and included in Erb (and other) templates.
+
 ## NavBar
 
 To make it easier to generate links, we added a NavBar class to the javascript helpers.  THis class has an open and close method, as well as a link_to mehod which either takes a url, or a url and a link label.
