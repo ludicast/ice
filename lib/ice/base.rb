@@ -30,13 +30,10 @@ class Hash
   end
 end
 
-
-
 class Ice
 
 
-
-  def self.convert_template(template_text, vars = {})
+ def self.convert_template(template_text, vars = {})
 
     V8::Context.new do |cxt|
       cxt.load "#{File.dirname(__FILE__)}/../parser.js"

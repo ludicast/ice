@@ -28,4 +28,15 @@ describe "Navigation" do
     page.should have_content(@note.data)
   end
 
+  it "has path" do
+    @note = Note.create! :name => "note name", :data => "data goes here"
+    visit note_path(@note)
+    puts page.body
+  end
+
+  it "parses navbar" do
+    visit "/navigation_demos/sample_nav_bar"
+    page.should have_selector('a', :href => "/foo")
+  end
+
 end

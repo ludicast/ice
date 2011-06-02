@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cash Register</title>
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/frameworks/jquery-1.5.2.js"></script>
+    <script src="js/frameworks/handlebars-0.9.0.pre.5.js"></script>
+    <script src="js/cash-register.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+
+  <body>
+
+    <script id="meal-template" type="text/x-handlebars-template">
+    {{#each dishes}}
+    <li>
+      <span class="title">{{title}}</span>
+      <span class="price">{{price}}</span>
+    </li>
+    {{/each}}
+    <li class="total">
+      <span class="title">Total</span>
+      <span class="price">{{price}}</span>
+    </li>
+    </script>
+
+    <div id="wrap">
+      
+      <h1 id="receipt">Receipt</h1>
+      
+      <ul id="meal"></ul>
+      
+      <form id="entry_form">
+        <input type="text" id="entry" />
+      </form>
+
+      <p class="note">
+        Example: <em class="note">Sirloin Steak $14.99</em>
+      </p>
+      
+    </div>
+
+  </body>
+</html>

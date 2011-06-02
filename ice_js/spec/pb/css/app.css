@@ -1,0 +1,51 @@
+body {
+  font-family: Helvetica, Calibri, Arial, sans-serif;
+  font-size: 14px; }
+
+#wrap {
+  width: 480px;
+  margin: 40px auto; }
+
+h1 {
+  margin: 0 0 7px 0;
+  font-size: 35px; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  border-top: 5px solid black; }
+  ul li {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    position: relative;
+    list-style-type: none;
+    border-top: 1px solid #999999; }
+    ul li:first-child {
+      border-top: none; }
+    ul li .title {
+      display: block;
+      width: 405px;
+      padding-left: 5px; }
+    ul li .price {
+      position: absolute;
+      top: 7px;
+      right: 5px;
+      color: #444444; }
+    ul li.total {
+      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 21px;
+      font-weight: bold; }
+      ul li.total .price {
+        color: black;
+        top: 10px; }
+
+input#entry {
+  width: 99%;
+  margin-top: 14px; }
+
+.note {
+  margin-top: 14px;
+  color: #999999; }

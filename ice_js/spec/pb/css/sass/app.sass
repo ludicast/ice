@@ -1,0 +1,74 @@
+$dark-grey:  #444
+$light-grey: #999
+
+body
+  font:
+    family: Helvetica, Calibri, Arial, sans-serif
+    size: 14px
+
+
+#wrap
+  width: 480px
+  margin: 40px auto
+
+h1
+  margin: 0 0 7px 0
+  font:
+    size: 35px
+  
+ul
+  margin:  0
+  padding: 0
+  border-top: 5px solid black
+    
+  li
+    padding:
+      top: 7px
+      bottom: 7px
+    position: relative
+    list-style-type: none
+    border-top: 1px solid $light-grey
+
+    &:first-child
+      border-top: none
+
+    .title
+      display: block
+      width: 405px
+      padding:
+        left: 5px
+    
+    .price
+      position: absolute
+      top: 7px
+      right: 5px
+      color: $dark-grey
+      
+    &.total
+      border:
+        top: 3px solid black
+        bottom: 3px solid black
+
+      padding:
+        top: 10px
+        bottom: 10px
+
+      font:
+        size: 21px
+        weight: bold
+      
+      .price
+        color: black
+        top: 10px
+
+input#entry
+  width: 99%
+  margin:
+    top: 14px
+
+
+.note
+  margin-top: 14px
+  color: $light-grey
+
+
