@@ -31,6 +31,7 @@ describe "Navigation" do
   it "has path" do
     @note = Note.create! :name => "note name", :data => "data goes here"
     visit note_path(@note)
+ pending #   page.should have_selector('a', :href => "/notes")
   end
 
   it "parses navbar" do

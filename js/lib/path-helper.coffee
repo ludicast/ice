@@ -1,7 +1,7 @@
 linkTo = (label, link, opts) ->
 	if (! link)
 		link = label
-	"<a href='#{link}'>#{label}</a>"
+	'<a href="' + link + '">' + label + '</a>'
 	
 class NavBar
 	@defaultOptions = {}

@@ -3,7 +3,7 @@ linkTo = function(label, link, opts) {
   if (!link) {
     link = label;
   }
-  return "<a href='" + link + "'>" + label + "</a>";
+  return '<a href="' + link + '">' + label + '</a>';
 };
 NavBar = (function() {
   NavBar.defaultOptions = {};
