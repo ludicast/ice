@@ -43,7 +43,14 @@ class Ice
       end
 
       jst = cxt['Jst']
-      return @evaled = jst.evaluate(jst.compile(template_text), {})
+      begin
+        compiled = jst.compile(template_text)
+        return jst.evaluate(compiled, {})
+      rescue Exception => e
+        puts "got exception #{e.class}"
+        puts "got exception #{e.inspect}"
+        puts "template text was #{template_text}"
+      end
     end
   end
   def self.compile_template(template_text)

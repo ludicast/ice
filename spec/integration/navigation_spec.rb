@@ -31,7 +31,6 @@ describe "Navigation" do
   it "has path" do
     @note = Note.create! :name => "note name", :data => "data goes here"
     visit note_path(@note)
-    puts page.body
   end
 
   it "parses navbar" do

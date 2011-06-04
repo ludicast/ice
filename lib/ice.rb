@@ -85,7 +85,7 @@ class Ice
           route_functions = "<% " + RoutesJs::get_routes + " %>"
 
           path_helper_code = <<-ROUTE_JS
-            #{File.read(File.dirname(__FILE__) + "/../ice_js/lib/path_helper.js")}
+            #{File.read(File.dirname(__FILE__) + "/../js/lib/path-helper.js")}
           ROUTE_JS
 
           path_helper = "<% " + path_helper_code + " %>"
