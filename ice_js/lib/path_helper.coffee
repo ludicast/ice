@@ -1,35 +1,35 @@
-link_to = (label, link, opts) ->
+linkTo = (label, link, opts) ->
 	if (! link)
 		link = label
 	"<a href=\"#{link}\">#{label}</a>"
 	
 class NavBar
-	@default_options = {}
+	@defaultOptions = {}
 	
 	assignValues: (options) ->
 		for optionName, optionValue of options
 			if options.hasOwnProperty(optionName)
-				this[optionName] = optionValue	
-				
+				this[optionName] = optionValue
+					
 	constructor: (options) ->
-		@assignValues(NavBar.default_options)
+		@assignValues(NavBar.defaultOptions)
 		@assignValues(options)
 
-	link_to: (label, link) ->
-		link_code = link_to(label, link)
-		if @link_wrapper
-			link_data = @link_wrapper(link_code)
+	linkTo: (label, link) ->
+		linkCode = linkTo(label, link)
+		if @linkWrapper
+			linkData = @linkWrapper(linkCode)
 		else
-			link_data = "<li>#{link_code}</li>"
-		if link_data
-			if @link_data && @separator
-				link_data = @separator + link_data
-			@link_data = link_data
-		link_data
+			linkData = "<li>#{linkCode}</li>"
+		if linkData
+			if @linkData && @separator
+				linkData = @separator + linkData
+			@linkData = linkData
+		linkData
 		
 	open: () ->
-		@nav_open || '<ul class="linkBar">'
+		@navOpen || '<ul class="linkBar">'
 
 
 	close: () ->
-    @nav_close || '</ul>'
+    @navClose || '</ul>'

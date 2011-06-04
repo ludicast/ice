@@ -1,4 +1,4 @@
-var BaseInputTag, check_box_tag, get_attribute_string, get_checked_string, get_class_string, get_disabled_string, get_maxlength_string, get_size_string, get_type_value, humanize, label_tag, password_field_tag;
+var BaseInputTag, checkBoxTag, getAttributeString, getCheckedString, getClassString, getDisabledString, getMaxlengthString, getSizeString, getTypeValue, humanize, labelTag, passwordFieldTag;
 humanize = function(name) {
   var match;
   match = name.match(/(.*)_id$/);
@@ -7,7 +7,7 @@ humanize = function(name) {
   }
   return name.split('_').join(' ');
 };
-get_type_value = function(type, opts) {
+getTypeValue = function(type, opts) {
   var _ref;
   switch (type) {
     case "disabled":
@@ -26,62 +26,62 @@ get_type_value = function(type, opts) {
       return opts[type];
   }
 };
-get_attribute_string = function(type, opts) {
-  return (opts && opts[type] && type + "=\"" + get_type_value(type, opts) + "\" ") || "";
+getAttributeString = function(type, opts) {
+  return (opts && opts[type] && type + "=\"" + getTypeValue(type, opts) + "\" ") || "";
 };
-get_size_string = function(opts) {
-  return get_attribute_string('size', opts);
+getSizeString = function(opts) {
+  return getAttributeString('size', opts);
 };
-get_class_string = function(opts) {
-  return get_attribute_string('class', opts);
+getClassString = function(opts) {
+  return getAttributeString('class', opts);
 };
-get_disabled_string = function(opts) {
-  return get_attribute_string('disabled', opts);
+getDisabledString = function(opts) {
+  return getAttributeString('disabled', opts);
 };
-get_checked_string = function(opts) {
-  return get_attribute_string('checked', opts);
+getCheckedString = function(opts) {
+  return getAttributeString('checked', opts);
 };
-get_maxlength_string = function(opts) {
-  return get_attribute_string('maxlength', opts);
+getMaxlengthString = function(opts) {
+  return getAttributeString('maxlength', opts);
 };
-label_tag = function(name, opts) {
-  var class_string, label;
+labelTag = function(name, opts) {
+  var classString, label;
   label = typeof opts === 'string' ? opts : humanize(name);
-  class_string = get_class_string(opts);
-  return "<label " + class_string + "for=\"" + name + "\">" + (label.charAt(0).toUpperCase()) + (label.substr(1)) + "</label>";
+  classString = getClassString(opts);
+  return "<label " + classString + "for=\"" + name + "\">" + (label.charAt(0).toUpperCase()) + (label.substr(1)) + "</label>";
 };
 BaseInputTag = (function() {
-  function BaseInputTag(tag_type) {
-    this.tag_type = tag_type;
+  function BaseInputTag(tagType) {
+    this.tagType = tagType;
   }
   BaseInputTag.prototype.render = function() {
-    return "<input " + this.checked_string + this.disabled_string + this.class_string + "id=\"" + this.name + "\" " + this.maxlength_string + "name=\"" + this.name + "\" " + this.size_string + "type=\"" + this.tag_type + "\" " + this.value + "/>";
+    return "<input " + this.checkedString + this.disabledString + this.classString + "id=\"" + this.name + "\" " + this.maxlengthString + "name=\"" + this.name + "\" " + this.sizeString + "type=\"" + this.tagType + "\" " + this.value + "/>";
   };
-  BaseInputTag.prototype.set_opts = function(opts) {
-    this.class_string = get_class_string(opts);
-    this.size_string = get_size_string(opts);
-    this.disabled_string = get_disabled_string(opts);
-    return this.maxlength_string = get_maxlength_string(opts);
+  BaseInputTag.prototype.setOpts = function(opts) {
+    this.classString = getClassString(opts);
+    this.sizeString = getSizeString(opts);
+    this.disabledString = getDisabledString(opts);
+    return this.maxlengthString = getMaxlengthString(opts);
   };
   return BaseInputTag;
 })();
-password_field_tag = function(name) {
+passwordFieldTag = function(name) {
   var opts, tag;
   tag = new BaseInputTag("password");
   tag.name = name;
   tag.value = ((typeof arguments[1] === 'string') && "value=\"" + arguments[1] + "\" ") || "";
   opts = arguments[2] || arguments[1];
-  tag.set_opts(opts);
-  tag.checked_string = "";
+  tag.setOpts(opts);
+  tag.checkedString = "";
   return tag.render();
 };
-check_box_tag = function(name) {
+checkBoxTag = function(name) {
   var opts, tag;
   tag = new BaseInputTag("checkbox");
   tag.name = name;
   tag.value = "value=\"" + (((typeof arguments[1] === 'string') && arguments[1]) || 1) + "\" ";
-  tag.checked_string = arguments[2] === true ? "checked=\"checked\" " : "";
+  tag.checkedString = arguments[2] === true ? "checked=\"checked\" " : "";
   opts = arguments[2] || arguments[1];
-  tag.set_opts(opts);
+  tag.setOpts(opts);
   return tag.render();
 };
