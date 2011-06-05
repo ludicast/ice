@@ -38,4 +38,8 @@ describe "Navigation" do
     page.should have_selector('a', :href => "/foo")
   end
 
+  it "parses navbar" do
+    visit "/navigation_demos/override_nav_bar"
+    page.should have_xpath('//div/span/a')
+  end
 end

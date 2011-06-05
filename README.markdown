@@ -1,21 +1,21 @@
 # Ice Ice Baby!
 
-The Ice project allows user-created templates to be written in the javascript programming language.  Thanks to the [therubyracer](http://github.com/cowboyd/therubyracer) they are then interpreted using Google's V8 javascript engine.
+The Ice project allows user-created templates to be written in the coffeescript programming language.  Thanks to the [therubyracer](http://github.com/cowboyd/therubyracer) they are then interpreted using Google's V8 javascript engine.
 
-Ice is similar to Liquid in terms of safety, but uses javascript to leverage the powers of a language most developers are familiar with.  Ice runs the templates through an erb-ish parser (written by [Mark Turansky](http://blog.markturansky.com/BetterJavascriptTemplates.html)). 
+Ice is similar to Liquid in terms of safety, but uses coffeescript to utilize a powerful language.  Ice runs the templates through the eco parser (written by [sstephenson@gmail.com](https://github.com/sstephenson/eco)).
 
 Your users can then write Ice templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
-        <% for (i = 0; i < users.length; i++) { %>
+        <% for user in @users { %>
             <tr>
-                <td><%= user.name %></td><td><%= mail_to(user.email) %></td>
+                <td><%= user.name %></td><td><%= @mailTo(user.email) %></td>
             </tr>
-        <% } %>
+        <% end %>
     </table>
 
-These templates can be run from the appropriate views directory, provided they have a .ice extension.  Also, the templates may be compiled on demand with the method:
+These templates can be run from the appropriate views directory, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
     Ice.convert_template(template_text, vars = {})
 
@@ -24,27 +24,25 @@ These templates can be run from the appropriate views directory, provided they h
 [Liquid](http://github.com/tobi/liquid) is excellent but it showing its age in a few ways:
 
 * Hard to extend without knowing Liquid internals
-* Introduces yet-another-language, whereas many designers/developers are already familiar with javascript
+* Introduces yet-another-language, whereas many designers/developers are getting familiar with coffeescript
 * Doesn't allow template creators to use a rich object model and easily create their own functions
 * Doesn't have a rich set of support libraries like what javascript brings to the table
 
 Note that we're still big fans of Liquid.  In fact, we call this project "Ice" as a tribute (extending the metaphor, we use "Cubes" where they have "Drops").
 
-In addition, our ice_view.rb file is almost directly ripped out of the liquid project.
-
 ## Installation
 
-Ice is curently being developed only for Rails 3 (we have a Rails 2 branch as well).  Simply add to your Gemfile
+Ice is currently being developed only for Rails 3.  Simply add to your Gemfile
 
     gem 'ice'
 
 ## to_ice
 
-Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the javascript, so people editing the template only have access to a sanitized version of the data that you want them to format.
+Every object is revealed to the templates via its to_ice method.  This helps filter the objects that are passed into the coffeescript, so people editing the template only have access to a sanitized version of the data that you want them to format.
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the javascript template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the coffeescript template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
 
 ## ActiveModel and to_ice
 
@@ -87,11 +85,10 @@ Partials may now be written in Ice, and included in Erb (and other) templates.
 
 To make it easier to generate links, we added a NavBar class to the javascript helpers.  THis class has an open and close method, as well as a link_to mehod which either takes a url, or a url and a link label.
 
-    <% var nav = new NavBar() %>
-    <%= nav.open() %>
-    <%= nav.link_to("Bar", "/foo") %>
-    <%= nav.link_to("http://ludicast.com") %>
-    <%= nav.close() %>
+    <%- @navBar (bar) => %>
+        <%- bar.linkTo("Bar", "/foo") %>
+        <%- bar.linkTo("http://ludicast.com") %>
+    <% end %>
 
 This then generates the following html
 
@@ -100,12 +97,11 @@ This then generates the following html
         <li><a href="http://ludicast.com">http://ludicast.com</a></li>
     </ul>
 
-You'll notice that the resulting html code is shorter than the generator code, making this look inefficient.  However the NavBar also takes options so if the NavBar above was instantiated with:
+The NavBar also takes options so if the NavBar above was instead instantiated with:
 
-    <% var nav = new NavBar({nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
-      return "<span>" + link + "</span>"
+    <%- @navBar (bar, { nav_prefix:"<div>", nav_postfix: "</div>", link_prefix: "<span>", link_postfix: "</span>" }) => %>
 
-it would automatically generate
+it would generate
 
     <div>
         <span><a href="/foo">Bar</a></span>

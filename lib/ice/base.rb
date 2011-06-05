@@ -52,13 +52,17 @@ module Ice
 	    %{<a href="#{link}">#{label}</a>}
     end
 
-    env["navBar"] = lambda do |yield_func|
+    env["navBar"] = lambda do |*opts, yield_func|
+      nav_prefix = opts.first.try(:nav_prefix) || '<ul class="linkBar">'
+      nav_postfix = opts.first.try(:nav_postfix) || '</ul>'
+      link_prefix = opts.first.try(:link_prefix) || '<li>'
+      link_postfix = opts.first.try(:link_postfix) || '</li>'
       ctx = {}
       ctx['linkTo'] = lambda do |label, link = nil|
-        env["linkTo"].call label, link
+        "#{link_prefix}#{env["linkTo"].call label, link}#{link_postfix}"
       end
       body = yield_func.call(ctx)
-      %{<ul class="linkBar">#{body}</ul>}
+      %{#{nav_prefix}#{body}#{nav_postfix}}
     end
   end
 
