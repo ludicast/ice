@@ -5,3 +5,5 @@ require 'ice/base_cube'
 
 require 'rails'
 require 'active_model/serialization'
+
+require 'ice/railtie' if defined?(Rails)

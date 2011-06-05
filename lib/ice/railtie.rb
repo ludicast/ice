@@ -1,7 +1,7 @@
 require 'active_model/serialization'
 require 'action_view'
 
-class Ice
+module Ice
   class Railtie < Rails::Railtie
     initializer "ice.configure_rails_initialization" do
       

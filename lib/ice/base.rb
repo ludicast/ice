@@ -30,35 +30,46 @@ class Hash
   end
 end
 
-class Ice
+module Ice
+  def self.add_routes(env)
+    Ice::BaseCube.subclasses.map(&:name).each do |name|
+      name = name.sub(/Cube/, "")
+      name = name[0].downcase + name[1..-1]
 
-
- def self.convert_template(template_text, vars = {})
-
-    V8::Context.new do |cxt|
-      cxt.load "#{File.dirname(__FILE__)}/../parser.js"
-
-      vars.each_pair do |key, value|
-        cxt[key] = value.to_ice
+      env[name.pluralize + "Path"] = lambda do
+        "/#{name.tableize}"
       end
 
-      jst = cxt['Jst']
-      begin
-        compiled = jst.compile(template_text)
-        return jst.evaluate(compiled, {})
-      rescue Exception => e
-        puts "got exception #{e.class}"
-        puts "got exception #{e.inspect}"
-        puts "template text was #{template_text}"
-      end
     end
   end
-  def self.compile_template(template_text)
-    V8::Context.new do |cxt|
-      cxt.load "#{File.dirname(__FILE__)}/../parser.js"
-      jst = cxt['Jst']
-      return jst.compile(template_text)
+
+  def self.add_helper_functions(env)
+    add_routes env
+    env["linkTo"] = lambda do |label, link|
+      if (! link)
+		    link = label
+	    end
+	    %{<a href="#{link}">#{label}</a>}
     end
+
+    env["navBar"] = lambda do |yield_func|
+      ctx = {}
+      ctx['linkTo'] = lambda do |label, link = nil|
+        env["linkTo"].call label, link
+      end
+      body = yield_func.call(ctx)
+      %{<ul class="linkBar">#{body}</ul>}
+    end
+  end
+
+ def self.convert_template(template_text, vars = {})
+   env = {}
+   vars.each_pair do |key, value|
+     env[key] = value.to_ice
+   end
+    add_helper_functions env
+    require 'eco'
+    Eco.render template_text, env
   end
 
 end

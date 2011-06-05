@@ -1,3 +1,4 @@
+
 linkTo = (label, link, opts) ->
 	if (! link)
 		link = label
@@ -20,7 +21,7 @@ class NavBar
 		if @linkWrapper
 			linkData = @linkWrapper(linkCode)
 		else
-			linkData = "<li>#{linkCode}</li>"
+			linkData = "<li>" + linkCode + "</li>"
 		if linkData
 			if @linkData && @separator
 				linkData = @separator + linkData

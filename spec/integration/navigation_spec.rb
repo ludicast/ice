@@ -15,7 +15,6 @@ describe "Navigation" do
     page.should have_content("Hello From Partial")
   end
 
-
   it "should let us have a partial with variables" do
     visit "/partial_demos/with_variable"
     page.should have_content("Hello From Variable")

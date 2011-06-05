@@ -1,4 +1,4 @@
-class Ice
+module Ice
   module CubeAssociation
     def belongs_to(*args)
       args.each do |sym|
