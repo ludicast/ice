@@ -30,6 +30,5 @@ class NavBar
 	open: () ->
 		@navOpen || '<ul class="linkBar">'
 
-
 	close: () ->
     @navClose || '</ul>'

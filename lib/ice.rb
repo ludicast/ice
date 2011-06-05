@@ -8,55 +8,31 @@ require 'rails'
 module RoutesJs
 
   def self.get_routes
-
-      response = rails_route_function
-
-      Rails.application.routes.routes.collect do |route|
-        path = route.segment_keys.inject('') { |str,s| str << s.to_s }
-        named_route =Rails.application.routes.
-                        named_routes.routes.key(route).to_s
-
-        if named_route != ''
-          response << route_function("#{named_route}_path", path)
-        end
+      Ice::BaseCube.subclasses.map(&:name).inject("") do |string, name|
+        name = name.sub(/Cube/, "").tableize
+        string << get_route_functions(name)
       end
 
-      response
+
   end
 
-private
+  def self.get_route_functions(name)
+<<-JAVASCRIPT
 
-  def self.rails_route_function
-<<EOF
-function rails_route(path, var_pairs) {
-var pair_index = 0,
-path_copy = path;
-for(; pair_index < var_pairs.length; pair_index++) {
-path_copy = path_copy.replace(
-':' + var_pairs[pair_index][0],
-var_pairs[pair_index][1]
-);
+/* edit function for #{name}
+ new function for #{name}
+ index function for #{name}
+*/
+function #{name}_path() {
+  return "/#{name}";
 }
-return(
-path_copy
-.replace(/[(][.]:.+[)][?]/g, '')
-.replace(/[(]|[)][?]/g, '')
-);
-}
-EOF
+
+/*
+show function for #{name}
+*/
+JAVASCRIPT
   end
 
-  def self.route_function name, path
-<<EOF
-function #{name}(variables) {
-var var_pairs = [];
-for(var key in variables) {
-var_pairs.push([key, variables[key]]);
-}
-return(rails_route('#{path}', var_pairs));
-}
-EOF
-  end
 end
 
 class Ice
@@ -83,7 +59,6 @@ class Ice
             variables[name.sub(/^@/, "")] = controller.instance_variable_get(name)
           end
           route_functions = "<% " + RoutesJs::get_routes + " %>"
-
           path_helper_code = <<-ROUTE_JS
             #{File.read(File.dirname(__FILE__) + "/../js/lib/path-helper.js")}
           ROUTE_JS

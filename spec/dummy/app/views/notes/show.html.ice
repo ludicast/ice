@@ -7,4 +7,4 @@
   <b>Data:</b>
   <%= note.data %>
 </p>
-<%= notes_path() %>
+<%= linkTo("All Notes", notes_path()) %>
