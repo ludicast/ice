@@ -42,10 +42,21 @@ GEM
     celerity (0.8.9)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.1.1)
     culerity (0.2.15)
     diff-lcs (1.1.2)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    execjs (1.1.0)
+      multi_json (~> 1.0)
     ffi (1.0.9)
     i18n (0.5.0)
     informal (0.0.3)
@@ -62,6 +73,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    multi_json (1.0.3)
     nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.3)
@@ -116,6 +128,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (>= 0.4.0)
+  eco
   informal
   jasmine
   rails (= 3.0.7)
