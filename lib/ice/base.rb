@@ -30,6 +30,11 @@ class Hash
   end
 end
 
+NavBarParams = {
+    :nav_prefix => "ehehthuemtmje htje hm"
+
+}
+
 module Ice
   def self.add_routes(env)
     Ice::BaseCube.subclasses.map(&:name).each do |name|
@@ -52,11 +57,16 @@ module Ice
 	    %{<a href="#{link}">#{label}</a>}
     end
 
+    run_for = lambda do |opts, var|
+      opts.first.try(var) ||
+        NavBarParams.try(:[], var)
+    end
+
     env["navBar"] = lambda do |*opts, yield_func|
-      nav_prefix = opts.first.try(:nav_prefix) || '<ul class="linkBar">'
-      nav_postfix = opts.first.try(:nav_postfix) || '</ul>'
-      link_prefix = opts.first.try(:link_prefix) || '<li>'
-      link_postfix = opts.first.try(:link_postfix) || '</li>'
+      nav_prefix = run_for.call(opts, :nav_prefix) || '<ul class="linkBar">'
+      nav_postfix = run_for.call(opts, :nav_postfix) || '</ul>'
+      link_prefix = run_for.call(opts, :link_prefix) || '<li>'
+      link_postfix = run_for.call(opts, :link_postfix) || '</li>'
       ctx = {}
       ctx['linkTo'] = lambda do |label, link = nil|
         "#{link_prefix}#{env["linkTo"].call label, link}#{link_postfix}"

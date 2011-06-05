@@ -99,7 +99,8 @@ This then generates the following html
 
 The NavBar also takes options so if the NavBar above was instead instantiated with:
 
-    <%- @navBar (bar, { nav_prefix:"<div>", nav_postfix: "</div>", link_prefix: "<span>", link_postfix: "</span>" }) => %>
+    <% @opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
+    <%- @navBar @opts, (bar)=> %>
 
 it would generate
 
@@ -108,11 +109,9 @@ it would generate
         <span><a href="http://ludicast.com">http://ludicast.com</a></span>
     </div>
 
-Also, if you want to make a site- or page-wide change, all you need to do is add these options to the NavBar class like
+Also, if you want to make a site-wide change, all you need to do is add these options to the NavBar class like
 
-    NavBar.default_options = {nav_open:"<div>", nav_close:"</div>",link_wrapper:function(link){
-        return "<span>" + link + "</span>"
-    }}
+    
 
 Then all links will generate with these options, unless overridden in the NavBar's constructor.  If the NavBar has a separator property added, it will add that separator between links.  If a link is not shown (due to access restrictions or whatever in the link_wrapper function) the separator obviously will not appear for that link.  So the code
 

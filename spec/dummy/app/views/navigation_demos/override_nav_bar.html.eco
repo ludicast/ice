@@ -1,5 +1,4 @@
 <% @opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
-<%- @opts.link_prefix %>
 <%- @navBar @opts, (bar)=> %>
 <%- bar.linkTo("Bar", "/foo") %>
 <%- bar.linkTo("http://ludicast.com") %>

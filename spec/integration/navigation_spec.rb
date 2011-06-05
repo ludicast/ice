@@ -42,4 +42,14 @@ describe "Navigation" do
     visit "/navigation_demos/override_nav_bar"
     page.should have_xpath('//div/span/a')
   end
+
+  it "allows class-wide overrides" do
+    NavBarParams.should_receive(:[]).with(:nav_prefix).and_return("<div>")
+    NavBarParams.should_receive(:[]).with(:nav_postfix).and_return("</div>")
+    NavBarParams.should_receive(:[]).with(:link_prefix).and_return("<span>")
+    NavBarParams.should_receive(:[]).with(:link_postfix).and_return("</span>")
+    visit "/navigation_demos/sample_nav_bar"
+    page.should have_xpath('//div/span/a')
+  end
+
 end
