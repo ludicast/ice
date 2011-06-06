@@ -2,7 +2,7 @@
 
 The Ice project allows user-created templates to be written in the Coffeescript programming language.  Thanks to the [therubyracer](http://github.com/cowboyd/therubyracer) they are then interpreted using Google's V8 javascript engine.
 
-Ice is similar to Liquid in terms of safety, but uses Coffeescript to utilize a powerful language.  Ice runs the templates through the eco parser (written by [sstephenson@gmail.com](https://github.com/sstephenson/eco)).
+Ice is similar to Liquid in terms of safety, but uses Coffeescript to utilize a powerful language.  Ice runs the templates through the eco parser (written by [Sam Stephenson](https://github.com/sstephenson/eco)).
 
 Your users can then write Ice templates like:
 
