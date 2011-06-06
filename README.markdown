@@ -1,6 +1,6 @@
 # Eco-Rails
 
-Eco templates, written by (written by [Sam Stephenson](https://github.com/sstephenson/eco), allow you to use Coffeescript with HTML in an ERB-ish fashion.
+Eco templates (written by [Sam Stephenson](https://github.com/sstephenson/eco), allow you to use Coffeescript with HTML in an ERB-ish fashion.
 
 You can then write Eco templates like:
 
