@@ -44,12 +44,21 @@ describe "Navigation" do
   end
 
   it "allows class-wide overrides" do
-    NavBarParams.should_receive(:[]).with(:nav_prefix).and_return("<div>")
-    NavBarParams.should_receive(:[]).with(:nav_postfix).and_return("</div>")
-    NavBarParams.should_receive(:[]).with(:link_prefix).and_return("<span>")
-    NavBarParams.should_receive(:[]).with(:link_postfix).and_return("</span>")
+    NavBarConfig.should_receive(:[]).with(:nav_prefix).and_return("<div>")
+    NavBarConfig.should_receive(:[]).with(:nav_postfix).and_return("</div>")
+    NavBarConfig.should_receive(:[]).with(:link_prefix).and_return("<span>")
+    NavBarConfig.should_receive(:[]).with(:link_postfix).and_return("</span>")
     visit "/navigation_demos/sample_nav_bar"
     page.should have_xpath('//div/span/a')
+  end
+
+  it "parses navbar" do
+    visit "/navigation_demos/routed_nav_bar"
+    note = Note.create! :name => "Another Note", :data => "More Note Data"
+    page.should have_selector('a', :href => note_path(note))
+    page.should have_selector('a', :href => edit_note_path(note))
+    page.should have_selector('a', :href => notes_path)
+    page.should have_selector('a', :href => new_note_path)
   end
 
 end

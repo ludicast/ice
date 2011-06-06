@@ -1,0 +1,7 @@
+<%- @navBar (bar) => %>
+<%- bar.linkTo("All Notes", @notesPath()) %>
+<%- bar.linkTo("New Note", @newNotePath()) %>
+<%- bar.linkTo("Note Details", @notePath(@note)) %>
+<%- bar.linkTo("Edit This Note", @editNotePath(@note)) %>
+<%= @note %>
+<% end %>

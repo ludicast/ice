@@ -2,24 +2,28 @@ require 'ice'
 require 'ice/cubeable'
 require 'ice/cube_association'
 require 'ice/base_cube'
-require 'ice/base'
+
 require 'ice/railtie'
+require 'ice/cube_helpers'
 require 'rails'
 
+require 'eco/base'
 
-class EcoTemplateHandler
+NavBarConfig = {}
 
-  class HtmlTemplateHandler < ActionView::Template::Handler
+module Eco
 
-  include ActionView::Template::Handlers::Compilable
+  class TemplateHandler < ActionView::Template::Handler
 
-  self.default_format = :eco
+    include ActionView::Template::Handlers::Compilable
 
-  def compile(template)
+    self.default_format = :eco
+
+    def compile(template)
         <<-ECO
-          template_source = <<-ICE_TEMPLATE
+          template_source = <<-ECO_TEMPLATE
             #{template.source}
-          ICE_TEMPLATE
+          ECO_TEMPLATE
           variables = {}
           variable_names = controller.instance_variable_names
           variable_names -= %w[@template]
@@ -28,14 +32,13 @@ class EcoTemplateHandler
           end
           variable_names.each do |name|
             variables[name.sub(/^@/, "")] = controller.instance_variable_get(name)
-          end 
-          Ice.convert_template(template_source, variables.merge(local_assigns))
+          end
+          Eco.convert_template(template_source, variables.merge(local_assigns))
         ECO
 
-    
     end
   end
 end
 
 
-ActionView::Template.register_template_handler :eco, EcoTemplateHandler::HtmlTemplateHandler
+ActionView::Template.register_template_handler :eco, Eco::TemplateHandler
