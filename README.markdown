@@ -1,8 +1,8 @@
 # Eco-Rails
 
-Eco templates, written by (written by [Sam Stephenson](https://github.com/sstephenson/eco), allow you to use in an ERB-ish fashion.
+Eco templates, written by (written by [Sam Stephenson](https://github.com/sstephenson/eco), allow you to use Coffeescript with HTML in an ERB-ish fashion.
 
-Your can then write Eco templates like:
+You can then write Eco templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
@@ -15,7 +15,7 @@ Your can then write Eco templates like:
 
 These templates then execute on the server in a javascript container.
 
-One of the benefits to this approach is that you can have user-submitted templates that run in a secure context.  Much like with the [Liquid Template System](https://github.com/tobi/liquid), you can have a multi-tenant system where everybody can securely code their sites.
+One of the benefits to this approach is that you can have user-submitted templates that run in a secure context.  Much like with the [Liquid Template System](https://github.com/tobi/liquid), you can have a multi-tenant system where everybody can securelywrite code for their own subdomains.
 
 These templates can be run from the appropriate views directory, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
@@ -29,11 +29,11 @@ Ice is currently being developed only for Rails 3.  Simply add to your Gemfile
 
 ## to_ice
 
-Every object is revealed to the templates via its to_ice method.  This helps sanitizes the objects that are passed into eco, so people editing the template only have access to a limited subset of the data.
+Every object is revealed to the templates via its to_ice method.  This helps sanitize the objects that are passed into eco, so people editing the template only have access to a limited subset of the data.
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the coffeescript template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
 
 ## ActiveModel and to_ice
 
