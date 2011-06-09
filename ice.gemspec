@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.date = %q{2010-10-04}
   s.description = %q{User templates written in javascript}
   s.email = %q{nate@ludicast.com}
-  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
+  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.markdown"]
   s.version = "0.4.0"
   s.add_dependency("eco", '>= 1.0.0')
   s.add_dependency("therubyracer", '>= 0.8.2')
