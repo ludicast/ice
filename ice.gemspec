@@ -8,7 +8,9 @@ Gem::Specification.new do |s|
   s.description = %q{User templates written in javascript}
   s.email = %q{nate@ludicast.com}
   s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
-  s.version = "0.3.0"
+  s.version = "0.4.0"
+  s.add_dependency("eco", '>= 1.0.0')
+  s.add_dependency("therubyracer", '>= 0.8.2')
   s.rdoc_options = ["--charset=UTF-8"]
   s.homepage = %q{http://github.com/ludicast/ice}
 end
