@@ -1,10 +1,10 @@
-#Ice Ice Baby
+#Ice Ice Baby!!!
 
-The Ice system for Javascript templating allows people to serve Javascript templates thanks to [The Ruby Racer](http://github.com/cowboyd/therubyracer), a gem letting you use Google's V8 Javascript engine.  These templates are then compiled and served to the browser.
+The Ice system for CoffeeScript/Javascript templating allows people to serve Javascript templates thanks to [The Ruby Racer](http://github.com/cowboyd/therubyracer), a gem letting you use Google's V8 Javascript engine.  These templates are then compiled and served to the browser.
 
 One of the key advantages of this approach is that the templates execute in their own sandbox.  This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some of the other template systems.
 
-The template parser we currently use is Eco, (written by [Sam Stephenson](https://github.com/sstephenson/eco)).  This allows you to use Coffeescript with HTML in an ERB-ish fashion.
+The template parser we currently use is Eco (written by [Sam Stephenson](https://github.com/sstephenson/eco)).  This allows you to use Coffeescript with HTML in an ERB-ish fashion.
 
 You can then write Eco templates like:
 
@@ -19,7 +19,7 @@ You can then write Eco templates like:
 
 Eco-formatted files may also exist in your filesystem, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
-    Ice.convert_eco_template(template_text, vars = {})
+    Ice::EcoTemplate.convert(template_text, vars = {})
 
 ## Installation
 
