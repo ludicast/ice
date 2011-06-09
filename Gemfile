@@ -8,7 +8,6 @@ gem "sqlite3"
 gem "rspec-rails", ">= 2.0.0.beta"
 
 gem "therubyracer"
-
 gem "informal"
 
 gem "jasmine"
