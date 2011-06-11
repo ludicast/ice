@@ -1,11 +1,13 @@
 #Ice Ice Baby!!!
 
-The Ice system for CoffeeScript templating allows people to serve Coffescript templates from Rails applications.
+The Ice system for templating allows people to serve Coffescript templates from Rails applications.  The advantage of this approach is that it is easy to serve these templates from a secure sandbox.  Therefore, your users can upload templates that are evaluated and served, but exist securely.
 
-The Ice system builds upon two excellent Gems:
+This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.  The advantage of using Ice for this is that you have a rich at your disposal, as well as being able to provide your own functions that can be exposed to your users.
 
-  * [The Ruby Racer](http://github.com/cowboyd/therubyracer), a gem letting you use Google's V8 Javascript engine.  These templates are then compiled and served to the browser.  One of the key advantages of this approach is that the templates execute in their own sandbox.  This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some of the other template systems.
-  * [Eco] (written by [Sam Stephenson](https://github.com/sstephenson/ruby-eco)).  This gem allows you to use Coffeescript with HTML in an ERB-ish fashion and execute it from within Ruby.
+Ice builds upon two excellent Gems:
+
+  * [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine.
+  * [Eco](https://github.com/sstephenson/ruby-eco) (written by Sam Stephenson).  This gem allows you to use Coffeescript with HTML in an ERB-ish fashion.
 
 You can then write Eco templates like:
 
@@ -20,9 +22,9 @@ You can then write Eco templates like:
 
 Eco-formatted files may also exist in your filesystem, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
-    Ice::EcoTemplate.convert(template_text, vars = {})
+    Ice::EcoTemplate.convert(template_text, variables)
 
-The vars are whatever environment you want to pass in to the application.
+The variables are whatever environment you want to pass in to the application.
 
 ## Installation
 
@@ -36,7 +38,7 @@ Every object is revealed to the templates via its to_ice method.  This helps san
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to the Liquid template.
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to Liquid.
 
 ## ActiveModel and to_ice
 
