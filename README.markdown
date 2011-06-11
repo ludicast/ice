@@ -38,13 +38,13 @@ Every object is revealed to the templates via its to_ice method.  This helps san
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to Liquid.
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the Eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to Liquid.
 
 ## ActiveModel and to_ice
 
 To make life easy, since most complex objects passed to the templates will be classes including ActiveModel::Serializable, the default to_ice behaviour of these classes is to pass itself in to a class with the same name, but followed by the word "Cube".
 
-Therefore calling to_ice on instance of a User class will invoke
+Therefore calling to_ice on an instance of a User class will invoke
 
     UserCube.new self
 
@@ -75,7 +75,7 @@ Note that the results of all associations and revealed functions are also saniti
 
 ## Partials
 
-Partials may now be written in Eco, and included in Erb (and other) templates.
+Partials may now be written in Eco, and included in ERB (and other) templates.
 
 
 ## Helpers
@@ -127,7 +127,7 @@ Then all links will generate with these options, unless overridden in the values
 
 ## Routes
 
-Assuming that all your cubes are models that you are exposing to your app, we add to your eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
+Assuming that all your cubes are models that you are exposing to your app, we add to your Eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
 
     newNotePath
     notesPath
