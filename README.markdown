@@ -2,7 +2,7 @@
 
 The Ice system for templating allows people to serve Coffescript templates from Rails applications.  The advantage of this approach is that it is easy to serve these templates from a secure sandbox.  Therefore, your users can upload templates that are evaluated and served, but exist securely.
 
-This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.  The advantage of using Ice for this is that you have a rich at your disposal, as well as being able to provide your own functions that can be exposed to your users.
+This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.  The advantage of using Ice for this is that you have a rich language at your disposal, as well as being able to provide your own functions that can be exposed to your users.
 
 Ice builds upon two excellent Gems:
 
