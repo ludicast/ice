@@ -23,3 +23,5 @@ pkg
 ## PROJECT::SPECIFIC
 spec/dummy/db/*.sqlite3
 spec/dummy/log/*.log
+
+*.gem
