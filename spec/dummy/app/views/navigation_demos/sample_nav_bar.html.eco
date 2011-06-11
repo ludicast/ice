@@ -1,4 +1,4 @@
-<%- @navBar (bar) => %>
-<%- bar.linkTo("Bar", "/foo") %>
-<%- bar.linkTo("http://ludicast.com") %>
+<%= navBar {}, (bar)=> %>
+<%= bar.linkTo("Bar", "/foo") %>
+<%= bar.linkTo("http://ludicast.com") %>
 <% end %>

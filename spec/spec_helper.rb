@@ -79,3 +79,8 @@ describe "BaseCube" do
     end
   end
 end
+
+def mock_out_enumerable_each(object, *items)
+  block = lambda {|block| items.each{|n| block.call(n)}}
+  object.stub!(:each).and_return(&block)
+end

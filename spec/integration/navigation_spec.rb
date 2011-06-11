@@ -43,11 +43,31 @@ describe "Navigation" do
     page.should have_xpath('//div/span/a')
   end
 
-  it "allows class-wide overrides" do
-    NavBarConfig.should_receive(:[]).with(:nav_prefix).and_return("<div>")
-    NavBarConfig.should_receive(:[]).with(:nav_postfix).and_return("</div>")
-    NavBarConfig.should_receive(:[]).with(:link_prefix).and_return("<span>")
-    NavBarConfig.should_receive(:[]).with(:link_postfix).and_return("</span>")
+  it "allows class-wide javascript overrides" do
+    javascript = <<-JAVASCRIPT
+      NavBarConfig = {
+        navPrefix: "<div>",
+        navPostFix: "</div>",
+        linkPrefix: "<span>",
+        linkPostFix: "</span>"
+      };
+    JAVASCRIPT
+
+    mock_out_enumerable_each IceJavascriptHelpers, javascript
+    visit "/navigation_demos/sample_nav_bar"
+    page.should have_xpath('//div/span/a')
+  end
+
+  it "allows class-wide coffeescript overrides" do
+    coffeescript = <<-COFFEESCRIPT
+      NavBarConfig =
+        navPrefix: "<div>",
+        navPostFix: "</div>",
+        linkPrefix: "<span>",
+        linkPostFix: "</span>"
+    COFFEESCRIPT
+
+    mock_out_enumerable_each IceCoffeescriptHelpers, coffeescript
     visit "/navigation_demos/sample_nav_bar"
     page.should have_xpath('//div/span/a')
   end

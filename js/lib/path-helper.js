@@ -1,46 +1,50 @@
-var NavBar, linkTo;
+var linkTo, navBar, safe;
+var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+safe = function(value) {
+  var result;
+  result = new String(value);
+  result.ecoSafe = true;
+  return result;
+};
 linkTo = function(label, link, opts) {
   if (!link) {
     link = label;
   }
   return '<a href="' + link + '">' + label + '</a>';
 };
-NavBar = (function() {
-  NavBar.defaultOptions = {};
-  NavBar.prototype.assignValues = function(options) {
-    var optionName, optionValue, _results;
-    _results = [];
-    for (optionName in options) {
-      optionValue = options[optionName];
-      _results.push(options.hasOwnProperty(optionName) ? this[optionName] = optionValue : void 0);
+navBar = function(options, yield) {
+  var bar, config, linkPostfix, linkPrefix, links, navPostfix, navPrefix;
+  config = (function() {
+    try {
+      return NavBarConfig;
+    } catch (error) {
+      return {};
     }
-    return _results;
+  })();
+  config["linkPrefix"] || (config["linkPrefix"] = "<li>");
+  config["linkPostfix"] || (config["linkPostfix"] = "</li>");
+  config["navPrefix"] || (config["navPrefix"] = "<ul>");
+  config["navPostfix"] || (config["navPostfix"] = "</ul>");
+  linkPrefix = function() {
+    return options["linkPrefix"] || config["linkPrefix"];
   };
-  function NavBar(options) {
-    this.assignValues(NavBar.defaultOptions);
-    this.assignValues(options);
-  }
-  NavBar.prototype.linkTo = function(label, link) {
-    var linkCode, linkData;
-    linkCode = linkTo(label, link);
-    if (this.linkWrapper) {
-      linkData = this.linkWrapper(linkCode);
-    } else {
-      linkData = "<li>" + linkCode + "</li>";
-    }
-    if (linkData) {
-      if (this.linkData && this.separator) {
-        linkData = this.separator + linkData;
+  linkPostfix = function() {
+    return options["linkPostfix"] || config["linkPostfix"];
+  };
+  navPrefix = function() {
+    return options["navPrefix"] || config["navPrefix"];
+  };
+  navPostfix = function() {
+    return options["navPostfix"] || config["navPostfix"];
+  };
+  bar = {
+    linkTo: __bind(function(label, link) {
+      if (link == null) {
+        link = null;
       }
-      this.linkData = linkData;
-    }
-    return linkData;
+      return safe("" + (linkPrefix()) + (linkTo(label, link)) + (linkPostfix()));
+    }, this)
   };
-  NavBar.prototype.open = function() {
-    return this.navOpen || '<ul class="linkBar">';
-  };
-  NavBar.prototype.close = function() {
-    return this.navClose || '</ul>';
-  };
-  return NavBar;
-})();
+  links = yield(bar);
+  return safe("" + (navPrefix()) + links + navPostfix);
+};

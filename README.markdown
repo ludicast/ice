@@ -72,6 +72,13 @@ Note that the results of all associations and revealed functions are also saniti
 
 Partials may now be written in Eco, and included in Erb (and other) templates.
 
+
+## Helpers
+
+Two global arrays exist named `IceJavascriptHelpers` and `IceCoffeescriptHelpers`.  If you add to those arrays strings of Javascript or Coffeescript, those strings will be included in your views.
+
+This is slightly hackish, so expect this approach to shortly be replaced with a better one.
+
 ## NavBar
 
 To make it easier to generate links, we added a `@navBar` helper.

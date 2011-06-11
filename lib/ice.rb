@@ -9,7 +9,7 @@ require 'rails'
 
 require 'ice/eco_template/handler'
 
-NavBarConfig = {}
-
+IceJavascriptHelpers = []
+IceCoffeescriptHelpers = []
 
 ActionView::Template.register_template_handler :eco, Ice::EcoTemplate::Handler
