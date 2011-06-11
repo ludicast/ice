@@ -7,4 +7,4 @@
   <b>Data:</b>
   <%= @note.data %>
 </p>
-<%- linkTo("All Notes", @notesPath()) %>
+<%- linkTo("All Notes", notesPath()) %>

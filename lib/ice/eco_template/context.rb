@@ -3,7 +3,7 @@ module Ice
     class Context < Hash
 
       def initialize(hash)
-        add_routes
+        # add_routes
         hash.each_pair do |key, value|
           self[key] = value.to_ice
         end

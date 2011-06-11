@@ -127,10 +127,10 @@ Then all links will generate with these options, unless overridden in the values
 
 Assuming that all your cubes are models that you are exposing to your app, we add to your eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
 
-    @newNotePath
-    @notesPath
-    @notePath(@note)
-    @editNotePath(@note)
+    newNotePath
+    notesPath
+    notePath(@note)
+    editNotePath(@note)
 
 which are converted to the appropriate paths.
 
