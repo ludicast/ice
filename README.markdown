@@ -98,10 +98,10 @@ This then generates the following html
         <li><a href="http://ludicast.com">http://ludicast.com</a></li>
     </ul>
 
-The `@navBar` helper also takes options so if the above was instead instantiated with:
+The `navBar` helper also takes options so if the above was instead instantiated with:
 
-    <% @opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
-    <%= navBar @opts, (bar)=> %>
+    <% opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
+    <%= navBar opts, (bar)=> %>
 
 it would generate
 
