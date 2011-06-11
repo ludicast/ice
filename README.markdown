@@ -1,10 +1,11 @@
 #Ice Ice Baby!!!
 
-The Ice system for CoffeeScript/Javascript templating allows people to serve Javascript templates thanks to [The Ruby Racer](http://github.com/cowboyd/therubyracer), a gem letting you use Google's V8 Javascript engine.  These templates are then compiled and served to the browser.
+The Ice system for CoffeeScript templating allows people to serve Coffescript templates from Rails applications.
 
-One of the key advantages of this approach is that the templates execute in their own sandbox.  This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some of the other template systems.
+The Ice system builds upon two excellent Gems:
 
-The template parser we currently use is Eco (written by [Sam Stephenson](https://github.com/sstephenson/eco)).  This allows you to use Coffeescript with HTML in an ERB-ish fashion.
+  * [The Ruby Racer](http://github.com/cowboyd/therubyracer), a gem letting you use Google's V8 Javascript engine.  These templates are then compiled and served to the browser.  One of the key advantages of this approach is that the templates execute in their own sandbox.  This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some of the other template systems.
+  * [Eco] (written by [Sam Stephenson](https://github.com/sstephenson/ruby-eco)).  This gem allows you to use Coffeescript with HTML in an ERB-ish fashion and execute it from within Ruby.
 
 You can then write Eco templates like:
 
@@ -12,7 +13,7 @@ You can then write Eco templates like:
         <tr><th>Name</th><th>Email</th></tr>
         <% for user in @users %>
             <tr>
-                <td><%= user.name %></td><td><%= @mailTo(user.email) %></td>
+                <td><%= user.name %></td><td><%= mailTo(user.email) %></td>
             </tr>
         <% end %>
     </table>
@@ -20,6 +21,8 @@ You can then write Eco templates like:
 Eco-formatted files may also exist in your filesystem, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
     Ice::EcoTemplate.convert(template_text, vars = {})
+
+The vars are whatever environment you want to pass in to the application.
 
 ## Installation
 
@@ -75,17 +78,17 @@ Partials may now be written in Eco, and included in Erb (and other) templates.
 
 ## Helpers
 
-Two global arrays exist named `IceJavascriptHelpers` and `IceCoffeescriptHelpers`.  If you add to those arrays strings of Javascript or Coffeescript, those strings will be included in your views.
+Two global arrays exist named `IceJavascriptHelpers` and `IceCoffeescriptHelpers`.  If you add to those arrays strings of Javascript or Coffeescript, those strings will be included in your views.  These string are also compiled in the case of Coffeescript.
 
-This is slightly hackish, so expect this approach to shortly be replaced with a better one.
+This is slightly hackish, so expect this approach to shortly be replaced with a better one.  But it is a decent way to add helpers to your Eco file.
 
 ## NavBar
 
-To make it easier to generate links, we added a `@navBar` helper.
+To make it easier to generate links, we added a `navBar` helper.
 
-    <%- @navBar (bar) => %>
-        <%- bar.linkTo("Bar", "/foo") %>
-        <%- bar.linkTo("http://ludicast.com") %>
+    <%= navBar (bar) => %>
+        <%= bar.linkTo("Bar", "/foo") %>
+        <%= bar.linkTo("http://ludicast.com") %>
     <% end %>
 
 This then generates the following html
@@ -98,7 +101,7 @@ This then generates the following html
 The `@navBar` helper also takes options so if the above was instead instantiated with:
 
     <% @opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
-    <%- @navBar @opts, (bar)=> %>
+    <%= navBar @opts, (bar)=> %>
 
 it would generate
 
@@ -107,18 +110,22 @@ it would generate
         <span><a href="http://ludicast.com">http://ludicast.com</a></span>
     </div>
 
-Also, if you want to make a site-wide change to the default NavBar settings, all you need to do is add these options to the NavBarConfig class (in Ruby) like
+Also, if you want to make a site-wide change to the default NavBar settings, all you need to do is add these options to the NavBarConfig class like
 
-    NavBarConfig[:nav_prefix] = "<div>"
-    NavBarConfig[:nav_postfix] = "</div>"
-    NavBarConfig[:link_prefix] = "<span>"
-    NavBarConfig[:link_postfix] = "</span>"
+    coffeescript = <<-COFFEESCRIPT
+      NavBarConfig =
+        navPrefix: "<div>",
+        navPostFix: "</div>",
+        linkPrefix: "<span>",
+        linkPostFix: "</span>"
+    COFFEESCRIPT
+    IceCoffeescriptHelpers << coffeescript
 
-Then all links will generate with these options, unless overridden in the values passed it to `@navBar`.
+Then all links will generate with these options, unless overridden in the values passed in to `navBar`.
 
 ## Routes
 
-Assuming that all your cubes are models that you are exposing to your app, we add to your eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteDrop`, you will have the following helper methods available:
+Assuming that all your cubes are models that you are exposing to your app, we add to your eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
 
     @newNotePath
     @notesPath
@@ -127,7 +134,7 @@ Assuming that all your cubes are models that you are exposing to your app, we ad
 
 which are converted to the appropriate paths.
 
-Note that some people might claim that it is insecure to expose your resources like this, but that probably should be dealt with on a case-by-case basis.
+Note that some people might claim that it is insecure to expose your resources like this, but that probably should be dealt with on a case-by-case basis.  Besides, the fact that you are exposing these resources as cubes means that you are, well, already exposing these resources.
 
 ## Note on Patches/Pull Requests
 
@@ -139,7 +146,6 @@ Note that some people might claim that it is insecure to expose your resources l
 
 ## Todo
 
-* Allow Coffeescript (or Javascript) helpers to be read from an additional file.
 * Add in form builders (from clots project)
 * Haml support
 * Use [Moneta](http://github.com/wycats/moneta) for caching autogenerated javascript files.
