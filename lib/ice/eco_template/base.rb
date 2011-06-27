@@ -6,6 +6,7 @@ module Ice
   module EcoTemplate
 
     def self.convert_template(template_text, vars = {})
+      V8::C::Locker() do
       context = V8::Context.new
       context.eval(open "#{File.dirname(__FILE__)}/../../../js/lib/path-helper.js")
 
@@ -21,6 +22,7 @@ module Ice
       template = context["eco"]["compile"].call(template_text)
 
       template.call(vars.to_ice)
+      end
     end
   end
 end
