@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Navigation" do
-  include Capybara
+  include Capybara::DSL
   
   it "should show the show page" do
     @note = Note.create! :name => "note name", :data => "data goes here"
