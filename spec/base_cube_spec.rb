@@ -23,7 +23,6 @@ class SecondClass
 
 end
 
-
 describe "BaseCube" do
   context "a cubeable class" do
     it "should automatically to_ice the cube_class" do

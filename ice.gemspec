@@ -4,13 +4,13 @@ Gem::Specification.new do |s|
   s.name = "ice"
   s.summary = %q{User templates written in javascript}
   s.authors = ["Nate Kidwell"]
-  s.date = %q{2010-10-04}
+  s.date = %q{2011-06-27}
   s.description = %q{User templates written in javascript}
   s.email = %q{nate@ludicast.com}
-  s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.markdown"]
-  s.version = "0.4.1"
+  s.files = Dir["{app,lib,config,js}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.markdown"]
+  s.version = "0.4.3"
   s.add_dependency("eco", '>= 1.0.0')
-  s.add_dependency("therubyracer", '>= 0.8.2')
+  s.add_dependency("therubyracer", '>= 0.9.1')
   s.rdoc_options = ["--charset=UTF-8"]
   s.homepage = %q{http://github.com/ludicast/ice}
 end

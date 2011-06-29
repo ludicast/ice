@@ -10,8 +10,12 @@ module Ice
     end
 
     def to_ice
-      cube_class = get_cube_class self.class
-      cube_class.new self
+      begin
+        cube_class = get_cube_class self.class
+        cube_class.new self
+      rescue
+        raise "Cannot find Cube class for model that you are calling to_ice on."
+      end
     end
   end
 end
