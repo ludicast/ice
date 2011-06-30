@@ -7,9 +7,9 @@ require 'ice/railtie'
 require 'ice/cube_helpers'
 require 'rails'
 
-require 'ice/eco_template/handler'
+require 'ice/handlers/eco/handler'
 
 IceJavascriptHelpers = []
 IceCoffeescriptHelpers = []
 
-ActionView::Template.register_template_handler :eco, Ice::EcoTemplate::Handler
+ActionView::Template.register_template_handler :eco, Ice::Handlers::Eco
