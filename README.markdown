@@ -43,7 +43,7 @@ The CoffeeKup equivalent to the above Eco template is:
                 td -> user.name
                 td ->  mailTo(user.email)
 
-Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.  A demo of this in in (this screencast)[http://vimeo.com/25907220/].
+Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.  A demo of this is in [this screencast](http://vimeo.com/25907220/).
 
 And you'd compile them on demand with:
 
