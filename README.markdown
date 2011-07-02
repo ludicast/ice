@@ -26,7 +26,9 @@ Ice allows you to write your templates in one of two formats.
         <% end %>
     </table>
 
-Eco-formatted files may also exist in your views directory, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
+Eco-formatted files may also exist in your views directory, provided they have a .eco extension.  An example of how this works is in [this blog post](http://ludicast.com/articles/3-ice-templates).
+
+Also, the templates may be compiled on demand with the method:
 
     Ice::Handlers::Eco.convert_template(template_text, variables)
 
@@ -41,7 +43,9 @@ The CoffeeKup equivalent to the above Eco template is:
                 td -> user.name
                 td ->  mailTo(user.email)
 
-Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.  And you'd compile them on demand with:
+Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.  A demo of this in in (this screencast)[http://vimeo.com/25907220/].
+
+And you'd compile them on demand with:
 
     Ice::Handlers::CoffeeKup.convert_template(template_text, variables)
 
