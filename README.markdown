@@ -7,6 +7,7 @@ This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some o
 Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine.
 
 Ice allows you to write your templates in one of two formats.
+
   * [Eco](https://github.com/sstephenson/ruby-eco) (written by Sam Stephenson).  This gem allows you to use Coffeescript with HTML in an ERB-ish fashion.
   * [CoffeeKup](http://coffeekup.org/) (written by Maurice Machado).  This library uses Coffeescript itself to define your templates in a way reminiscent of Markaby and Haml.
 
