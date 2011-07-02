@@ -4,12 +4,13 @@ The Ice system for templating allows people to serve Coffescript templates from 
 
 This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.  The advantage of using Ice for this is that you have a rich language at your disposal, as well as being able to provide your own functions that can be exposed to your users.
 
-Ice builds upon two excellent Gems:
+Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine.
 
-  * [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine.
+Ice allows you to write your templates in one of two formats.
   * [Eco](https://github.com/sstephenson/ruby-eco) (written by Sam Stephenson).  This gem allows you to use Coffeescript with HTML in an ERB-ish fashion.
+  * [CoffeeKup](http://coffeekup.org/) (written by Maurice Machado).  This library uses Coffeescript itself to define your templates in a way reminiscent of Markaby and Haml.
 
-You can then write Eco templates like:
+ You can then write Eco templates like:
 
     <table>
         <tr><th>Name</th><th>Email</th></tr>
@@ -22,15 +23,32 @@ You can then write Eco templates like:
 
 Eco-formatted files may also exist in your filesystem, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
-    Ice::EcoTemplate.convert(template_text, variables)
+    Ice::Handlers::Eco.convert_template(template_text, variables)
 
 The variables are whatever environment you want to pass in to the application.
+
+The CoffeeKup equivalent to the above Eco template is:
+
+    table ->
+        tr ->
+            th -> "Name"
+            th -> "Email"
+        for user in @users ->
+            tr ->
+                td -> user.name
+                td ->  mailTo(user.email)
+
+Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.
+
+Eventually I'd like to bring in other template libraries, but this should suffice for now.
 
 ## Installation
 
 Ice is currently being developed only for Rails 3.  Simply add to your Gemfile
 
     gem 'ice'
+
+Ice is undergoing *very* active development so be sure to either use the most recent gem, or pull from master.
 
 ## to_ice
 
@@ -86,21 +104,27 @@ This is slightly hackish, so expect this approach to shortly be replaced with a 
 
 ## NavBar
 
-To make it easier to generate links, we added a `navBar` helper.
+To make it easier to generate links, we added a `navBar` helper.  For Eco templates it appears as:
 
     <%= navBar (bar) => %>
         <%= bar.linkTo("Bar", "/foo") %>
         <%= bar.linkTo("http://ludicast.com") %>
     <% end %>
 
-This then generates the following html
+and in CoffeeKup the navBar is written as:
+
+    navBar (o)=>
+        o.linkTo("Bar", "/foo")
+        o.linkTo("http://ludicast.com")
+
+In either case this generates the following html
 
     <ul class="linkBar">
         <li><a href="/foo">Bar</a></li>
         <li><a href="http://ludicast.com">http://ludicast.com</a></li>
     </ul>
 
-The `navBar` helper also takes options so if the above was instead instantiated with:
+The `navBar` helper also takes options so if the Eco above was instead instantiated with:
 
     <% opts = nav_prefix:'<div>', nav_postfix: '</div>', link_prefix: '<span>', link_postfix: '</span>' %>
     <%= navBar opts, (bar)=> %>
