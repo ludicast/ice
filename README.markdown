@@ -1,10 +1,15 @@
-#Ice Ice Baby!!!
+#Ice Template System
 
-The Ice system for templating allows people to serve Coffescript templates from Rails applications.  The advantage of this approach is that it is easy to serve these templates from a secure sandbox.  Therefore, your users can upload templates that are evaluated and served, but exist securely.
+The Ice system for templating allows people to serve Javascript/Coffeescript templates from Rails applications.  Its approach is similar to that taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.
 
-This is the approach taken by [Liquid](http://github.com/tobi/liquid) and some other template systems.  The advantage of using Ice for this is that you have a rich language at your disposal, as well as being able to provide your own functions that can be exposed to your users.
+Using Javascript/Coffeescript has a few nice aspects
 
-Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine.
+  * It is easy to store these templates in your database.  Therefore, your users can upload templates that are evaluated and served, but do not execute malicious code.
+  * By using Javascript/Coffeescript, you have the advantage of running your views on both the server and the browser (reducing code duplication).
+  * Also, thanks to Javascript/Coffeescript, you have the ability to modify the templates in exciting ways, using your own code libraries.
+  * Similarly, thanks to Javascript/Coffeescript, your users have the ability to modify the templates in exciting ways, using their own code libraries.
+
+Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine to exerute your templates.
 
 Ice allows you to write your templates in one of two formats.
 
@@ -22,11 +27,9 @@ Ice allows you to write your templates in one of two formats.
         <% end %>
     </table>
 
-Eco-formatted files may also exist in your filesystem, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
+Eco-formatted files may also exist in your views directory, provided they have a .eco extension.  Also, the templates may be compiled on demand with the method:
 
     Ice::Handlers::Eco.convert_template(template_text, variables)
-
-The variables are whatever environment you want to pass in to the application.
 
 The CoffeeKup equivalent to the above Eco template is:
 
@@ -41,7 +44,9 @@ The CoffeeKup equivalent to the above Eco template is:
 
 Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.
 
-Eventually I'd like to bring in other template libraries, but this should suffice for now.
+    Ice::Handlers::CoffeeKup.convert_template(template_text, variables)
+
+Eventually I'd like to bring in other JS template libraries, but Eco and CoffeeKup should suffice for now.  If you like Erb, use Eco.  If you like Haml, use CoffeeKup.
 
 ## Installation
 
@@ -53,11 +58,13 @@ Ice is undergoing *very* active development so be sure to either use the most re
 
 ## to_ice
 
-Every object is revealed to the templates via its to_ice method.  This helps sanitize the objects that are passed into Ice, so people editing the template only have access to a limited subset of the data.
+Every object is revealed to the templates via its to_ice method.  This helps sanitize the objects that are passed into Ice, so people editing the template only have access to a limited subset of the data.  This prevents people from adding code like:
+
+    <h1>Hi, <%= User.delete_all %></h1>
 
 Instances of some classes like String and Numeric just return themselves as the result of to_ice.  Hashes and Arrays run to_ice recursively on their members.
 
-If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the Eco template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to Liquid.
+If you want an object to map to a different representation, simply define a to_ice object that returns whatever object you want to represent it within the Ice template.  These objects are referred to as "Cubes", and are equivalent to "Drops" for those used to Liquid.
 
 ## ActiveModel and to_ice
 
@@ -94,8 +101,7 @@ Note that the results of all associations and revealed functions are also saniti
 
 ## Partials
 
-Partials may now be written in Eco, and included in ERB (and other) templates.
-
+Partials may now be written in Eco or CoffeeKup, and included in ERB (and other) templates.
 
 ## Helpers
 
@@ -174,9 +180,8 @@ Note that some people might claim that it is insecure to expose your resources l
 ## Todo
 
 * Add in form builders (from clots project)
-* Haml support
 * Use [Moneta](http://github.com/wycats/moneta) for caching autogenerated javascript files.
-* Allowing Ice to render Rails partials
+* Allowing Ice to render partials
 * Allowing Ice to serve as Rails layout files.
 
 ## Copyright
