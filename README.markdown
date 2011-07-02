@@ -6,10 +6,9 @@ Using Javascript/Coffeescript has a few nice aspects
 
   * It is easy to store these templates in your database.  Therefore, your users can upload templates that are evaluated and served, but do not execute malicious code.
   * By using Javascript/Coffeescript, you have the advantage of running your views on both the server and the browser (reducing code duplication).
-  * Also, thanks to Javascript/Coffeescript, you have the ability to modify the templates in exciting ways, using your own code libraries.
-  * Similarly, thanks to Javascript/Coffeescript, your users have the ability to modify the templates in exciting ways, using their own code libraries.
+  * Also, thanks to Javascript/Coffeescript, your users have the ability to modify the templates in exciting ways, using their own code libraries.
 
-Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine to exerute your templates.
+Ice builds upon [The Ruby Racer](http://github.com/cowboyd/therubyracer) (written by Charles Lowell).  This gem lets you use Google's V8 Javascript engine to execute your templates inside a sandbox.
 
 Ice allows you to write your templates in one of two formats.
 
@@ -42,7 +41,7 @@ The CoffeeKup equivalent to the above Eco template is:
                 td -> user.name
                 td ->  mailTo(user.email)
 
-Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.
+Similarly, these CoffeeKup files may exist on your filesystem provided they have a .coffeekup extension.  And you'd compile them on demand with:
 
     Ice::Handlers::CoffeeKup.convert_template(template_text, variables)
 
@@ -107,7 +106,7 @@ Partials may now be written in Eco or CoffeeKup, and included in ERB (and other)
 
 Two global arrays exist named `IceJavascriptHelpers` and `IceCoffeescriptHelpers`.  If you add to those arrays strings of Javascript or Coffeescript, those strings will be included in your views.  These string are also compiled in the case of Coffeescript.
 
-This is slightly hackish, so expect this approach to shortly be replaced with a better one.  But it is a decent way to add helpers to your Eco file.
+This is slightly hackish, so expect this approach to shortly be replaced with a better one.  But it is a quick way to add helpers to Ice.
 
 ## NavBar
 
@@ -158,7 +157,7 @@ Then all links will generate with these options, unless overridden in the values
 
 ## Routes
 
-Assuming that all your cubes are models that you are exposing to your app, we add to your Eco templates routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
+Assuming that all your cubes are models that you are exposing to your app, we add to Ice routing helpers for every class inheriting from BaseCube.  Therefore, if you have a cube class named `NoteCube`, you will have the following helper methods available:
 
     newNotePath
     notesPath
