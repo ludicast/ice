@@ -1,4 +1,4 @@
-(function() {
+var window = {};
   var cache, coffee, coffeekup, skeleton, support, tags;
   var __hasProp = Object.prototype.hasOwnProperty;
   if (typeof window !== "undefined" && window !== null) {
@@ -215,4 +215,3 @@
     };
     coffeekup.adapters.meryl = coffeekup.adapters.simple;
   }
-}).call(this);

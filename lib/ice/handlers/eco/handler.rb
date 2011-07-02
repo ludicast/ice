@@ -7,25 +7,13 @@ module Ice
     module Eco
       def self.convert_template(template_text, vars = {})
         Base.convert_template(template_text) do |context|
+          helpers = "#{File.dirname(__FILE__)}/../../../../js/lib/eco-path-helper.js"
+
+          context.eval(open(helpers).read)
           context.eval(::Eco::Source.combined_contents)
           template = context["eco"]["compile"].call(template_text)
           template.call(vars.to_ice)
         end
-      end
-
-      def self.variables
-        <<-VARIABLES
-          variable_names = controller.instance_variable_names
-          variable_names -= %w[@template]
-          if controller.respond_to?(:protected_instance_variables)
-            variable_names -= controller.protected_instance_variables
-          end
-
-          variables = {}
-          variable_names.each do |name|
-            variables[name.sub(/^@/, "")] = controller.instance_variable_get(name)
-          end
-        VARIABLES
       end
 
       def self.call(template)
@@ -34,7 +22,7 @@ module Ice
             #{template.source}
           ECO_TEMPLATE
 
-          #{variables}
+          #{Base.variables}
 
           Ice::Handlers::Eco.convert_template(template_source, variables.merge(local_assigns))
         ECO

@@ -1,0 +1,3 @@
+navBar (o)=>
+  o.linkTo("Bar", "/foo")
+  o.linkTo("http://ludicast.com")

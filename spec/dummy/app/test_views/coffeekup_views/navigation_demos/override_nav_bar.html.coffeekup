@@ -1,0 +1,10 @@
+opts =
+    navWrap: (innerFunc)->
+        div ->
+            innerFunc()
+    linkWrap: (innerFunc) ->
+        span -> innerFunc()
+
+navBar opts, (bar)=>
+    bar.linkTo("Bar", "/foo")
+    bar.linkTo("http://ludicast.com")

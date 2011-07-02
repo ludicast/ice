@@ -1,0 +1,5 @@
+navBar (o) =>
+  o.linkTo("All Notes", notesPath())
+  o.linkTo("New Note", newNotePath())
+  o.linkTo("Note Details", notePath(@note))
+  o.linkTo("Edit This Note", editNotePath(@note))

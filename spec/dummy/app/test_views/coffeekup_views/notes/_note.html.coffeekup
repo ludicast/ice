@@ -1,0 +1,3 @@
+frameset ->
+  legend -> @note.name
+  p -> @note.data

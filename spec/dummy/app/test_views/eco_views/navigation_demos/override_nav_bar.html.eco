@@ -1,0 +1,5 @@
+<% opts = navPrefix:'<div>', navPostfix: '</div>', linkPrefix: '<span>', link_Postfix: '</span>' %>
+<%= navBar opts, (bar)=> %>
+<%= bar.linkTo("Bar", "/foo") %>
+<%= bar.linkTo("http://ludicast.com") %>
+<% end %>

@@ -1,0 +1,9 @@
+p ->
+  b -> "Name:"
+  @note.name
+
+p ->
+  b -> "Data:"
+  @note.data
+
+p -> linkTo "All Notes", notesPath()
