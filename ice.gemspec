@@ -4,11 +4,11 @@ Gem::Specification.new do |s|
   s.name = "ice"
   s.summary = %q{User templates written in javascript}
   s.authors = ["Nate Kidwell"]
-  s.date = %q{2011-07-02}
+  s.date = %q{2011-07-03}
   s.description = %q{User templates written in javascript}
   s.email = %q{nate@ludicast.com}
   s.files = Dir["{app,lib,config,js}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.markdown"]
-  s.version = "0.5.0"
+  s.version = "0.5.1"
   s.add_dependency("eco", '>= 1.0.0')
   s.add_dependency("therubyracer", '>= 0.9.1')
   s.rdoc_options = ["--charset=UTF-8"]
