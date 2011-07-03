@@ -1,12 +1,22 @@
 module Ice
   class BaseCube
     extend Ice::CubeAssociation 
+    attr_reader :source
 
-    def self.revealing(* attributes) 
-      unless @attribute_names
-        @attribute_names = []
-      end
-      @attribute_names.concat(attributes)
+    def to_ice
+      self
+    end
+
+    def id
+      @source.id
+    end
+
+    def self.attribute_names
+      @@attribute_names ||= []
+    end
+
+    def self.revealing(* attributes)
+      attribute_names.concat(attributes)
 
       attributes.each do |attr|
         define_method attr.to_sym do
@@ -15,31 +25,31 @@ module Ice
       end
     end
 
-    attr_reader :source
-
-    def to_ice
-      self
-    end
 
     def to_hash
-      if @attribute_names
-        hash = {:id => @source.id}
-        @attribute_names && @attribute_names.each do |name|
-          hash[name] = @source.send(name)
+      if self.class.attribute_names.count > 0
+        hash = {}
+        ([:id, :created_at, :updated_at] +
+            self.class.attribute_names).each do |method|
+          if @source.respond_to? method
+            hash[method] = source.send(method)
+          end
         end
         hash
       else
-        @hash = @source.serializable_hash
+        @hash ||= @source.serializable_hash.to_ice
       end
     end
 
-    def id
-      @source.id
+    def to_json
+      to_hash.to_json
     end
+
 
     def initialize(source)
       @source = source
-      unless @attribute_names
+      
+      unless self.class.attribute_names.count > 0
         to_hash.each_key do |key|
           unless self.respond_to? key.to_sym
             self.class.send :define_method, key.to_sym do
