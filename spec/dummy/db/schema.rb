@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531164457) do
+ActiveRecord::Schema.define(:version => 20110703014136) do
 
   create_table "notes", :force => true do |t|
     t.string   "name"
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "secret_data", :default => "Secret Data"
   end
 
 end
