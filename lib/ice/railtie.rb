@@ -1,5 +1,6 @@
 require 'active_model/serialization'
 require 'action_view'
+require 'active_record/base'
 
 module Ice
   class Railtie < Rails::Railtie
@@ -11,3 +12,5 @@ module Ice
 end
 
 ActiveModel::Serialization.send(:include, Ice::Cubeable)
+
+ActiveRecord::Base.send(:include, Ice::Cubeable)
